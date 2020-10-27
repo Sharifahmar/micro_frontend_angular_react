@@ -1,0 +1,130 @@
+<!-- Hidden label form layout section start -->
+<section id="hidden-label-form-layouts">
+  <div class="row text-left justify-content-center" matchHeight="card">
+
+    <div class="col-md-7">
+      <div class="card">
+        <div class="card-header pb-2">
+          <h4 class="card-title text-center" id="hidden-label-colored-controls">Donar Contribution Details</h4>
+
+        </div>
+        <div class="card-content">
+          <div class="px-3">
+            <form class="form" [formGroup]="donarContributionForm" (ngSubmit)="registerDonationAmount()" novalidate>
+              <div class="form-body">
+                <h4 class="form-section"><i class="ft-info"></i>Information</h4>
+                <div class="row">
+                    <div class="form-group col-6 mb-2">
+                      <label class="sr-only" for="userinput8">Receipt Number</label>
+                      <input type="text" id="userinput1" class="form-control border-primary" placeholder="Receipt Number"
+                      formControlName="receiptNumber" required>
+                      <small class="form-text text-muted danger"
+                      *ngIf="!donarContributionForm.get('receiptNumber').valid && (donarContributionForm.get('receiptNumber').dirty || donarContributionForm.get('receiptNumber').touched)">Please
+                      enter Receipt Number</small>
+                    </div>
+                  </div>
+                <div class="row" *ngIf="flag">
+                  <div class="form-group col-md-6 mb-2">
+                    <label class="sr-only" for="userinput1">First Name</label>
+                    <input type="text" id="userinput1" class="form-control border-primary" placeholder="First Name"
+                      formControlName="firstName" required>
+                    <small class="form-text text-muted danger"
+                      *ngIf="!donarContributionForm.get('firstName').valid && (donarContributionForm.get('firstName').dirty || donarContributionForm.get('firstName').touched)">Please
+                      enter First Name</small>
+                  </div>
+                  <div class="form-group col-md-6 mb-2">
+                    <label class="sr-only" for="userinput2">Last Name</label>
+                    <input type="text" id="userinput2" class="form-control border-primary" placeholder="Last Name"
+                      formControlName="lastName" required>
+                    <small class="form-text text-muted danger"
+                      *ngIf="!donarContributionForm.get('lastName').valid && (donarContributionForm.get('lastName').dirty || donarContributionForm.get('lastName').touched)">Please
+                      enter Last Name</small>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-md-6 mb-2">
+                    <label class="sr-only" for="userinput2">Mobile Number</label>
+                    <input type="text" id="userinput2" class="form-control border-primary" placeholder="Mobile Number"
+                      formControlName="phoneNumber" required>
+                    <small class="form-text text-muted danger"
+                      *ngIf="phoneNumber.invalid && (donarContributionForm.get('phoneNumber').dirty || donarContributionForm.get('phoneNumber').touched)">
+                      <div *ngIf="phoneNumber.errors?.required">
+                        Please enter Mobile Number.
+                      </div>
+                      <div *ngIf="phoneNumber.errors?.pattern">
+                        Please enter a valid Mobile Number.
+                      </div>
+                    </small>
+                  </div>
+                  <div class="form-group col-md-6 mb-2" *ngIf="flag">
+                    <label class="sr-only" for="userinput1">Email</label>
+                    <input type="text" id="userinput1" class="form-control border-primary" placeholder="Email"
+                      formControlName="email" required>
+                    <small class="form-text text-muted danger"
+                      *ngIf="email.invalid && (donarContributionForm.get('email').dirty || donarContributionForm.get('email').touched)">
+                      <div *ngIf="email.errors?.required">
+                        Please enter Email.
+                      </div>
+                      <div *ngIf="email.errors?.pattern">
+                        Please enter a valid email.
+                      </div>
+                    </small>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-md-6 mb-2">
+                    <label class="sr-only" for="userinput1">Amount</label>
+                    <input type="text" id="userinput1" class="form-control border-primary" placeholder="Amount"
+                      formControlName="donationAmount" required>
+                    <small class="form-text text-muted danger"
+                      *ngIf="!donarContributionForm.get('donationAmount').valid && (donarContributionForm.get('donationAmount').dirty || donarContributionForm.get('donationAmount').touched)">
+                      <div *ngIf="donarContributionForm.get('donationAmount').errors?.required">
+                        Please enter Amount.
+                      </div>
+                      <div *ngIf="donarContributionForm.get('donationAmount').errors?.pattern">
+                        Please enter a valid Amount.
+                      </div>
+                    </small>
+                  </div>
+                  <div class="form-group col-md-6 mb-2">
+                    <select id="projectinput7" class="form-control border-primary" formControlName="donationTypeId"
+                      required>
+                      <option value="" disabled selected>Donation Type</option>
+                      <option *ngFor="let value of donationTypes;" [ngValue]="value.donationTypeId">
+                        {{value.donationType}}</option>
+                    </select>
+                    <small class="form-text text-muted danger"
+                      *ngIf="!donarContributionForm.get('donationTypeId').valid && (donarContributionForm.get('donationTypeId').dirty || donarContributionForm.get('donationTypeId').touched)">Please
+                      select Donation Type</small>
+                  </div>
+                </div>
+                <div class="row" *ngIf="flag">
+                  <div class="form-group col-12 mb-2">
+                    <label class="sr-only" for="userinput8">Address</label>
+                    <textarea id="userinput8" rows="5" class="form-control border-primary" placeholder="Address"
+                      formControlName="address" required></textarea>
+                    <small class="form-text text-muted danger"
+                      *ngIf="!donarContributionForm.get('address').valid && (donarContributionForm.get('address').dirty || donarContributionForm.get('address').touched)">Please
+                      enter your Address</small>
+                  </div>
+                </div>
+              </div>
+              <div class="form-actions right">
+                <button type="button" class="btn btn-raised btn-warning mr-1" (click)=cancelDoContribution();>
+                  <i class="ft-x"></i> {{cancelButtonLabel}}
+                </button>
+                <button type="submit" class="btn btn-raised btn-primary" [disabled]="donarContributionForm.invalid"
+                  *ngIf="!flag">
+                  <i class="fa fa-check-square-o"></i> {{saveButtonLabel}}
+                </button>
+              </div>
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+<!-- // Hidden label form layout section end -->

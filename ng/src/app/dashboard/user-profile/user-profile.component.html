@@ -1,0 +1,154 @@
+<!-- Hidden label form layout section start -->
+<section id="hidden-label-form-layouts">
+  <div class="row text-left justify-content-center" matchHeight="card">
+    <div class="col-md-7">
+      <div class="card removeHeight">
+        <div class="card-header pb-2">
+          <h4 class="card-title text-center" id="hidden-label-colored-controls">User Profile</h4>
+        </div>
+        <div class="card-content">
+          <div class="px-3">
+            <form class="form" [formGroup]="userProfileForm" (ngSubmit)="updateUser()" novalidate>
+              <div class="form-body">
+                <h4 class="form-section"><i class="ft-info"></i> About User</h4>
+                <div class="row">
+                  <div class="col-md-6 offset-md-4 mb-2">
+                    <div class="card removeHeight">
+                      <div class="card-content">
+                        <div class="card-img custom-card">
+                          <img class="img-fluid" [src]="profileUrl" alt="Card image cap">
+                          <a class="btn btn-floating halfway-fab bg-warning custom-right" (click)="open(content)"><i
+                              class="ft-plus"></i></a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-md-6 mb-2">
+                    <label class="sr-only" for="userinput1">First Name</label>
+                    <input type="text" id="userinput1" class="form-control border-primary" placeholder="First Name"
+                      formControlName="firstName" required>
+                    <small class="form-text text-muted danger"
+                      *ngIf="!userProfileForm.get('firstName').valid && (userProfileForm.get('firstName').dirty || userProfileForm.get('firstName').touched)">Please
+                      enter First Name</small>
+                  </div>
+                  <div class="form-group col-md-6 mb-2">
+                    <label class="sr-only" for="userinput2">Last Name</label>
+                    <input type="text" id="userinput2" class="form-control border-primary" placeholder="Last Name"
+                      formControlName="lastName" required>
+                    <small class="form-text text-muted danger"
+                      *ngIf="!userProfileForm.get('lastName').valid && (userProfileForm.get('lastName').dirty || userProfileForm.get('lastName').touched)">Please
+                      enter Last Name</small>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-md-6 mb-2">
+                    <label class="sr-only" for="userinput3">Email</label>
+                    <input type="text" id="userinput3" class="form-control border-primary" placeholder="Email"
+                      formControlName="email" required>
+                  </div>
+                  <div class="form-group col-md-6 mb-2">
+                    <label class="sr-only" for="userinput4">Mobile Number</label>
+                    <input type="text" id="userinput4" class="form-control border-primary" placeholder="Mobile Number"
+                      formControlName="phoneNumber" required>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="form-group col-md-6 mb-2">
+                    <label class="sr-only" for="userinput5">City</label>
+                    <select id="userinput5" class="form-control border-primary" formControlName="city" required>
+                      <option value="" selected="" disabled="">City</option>
+                      <option *ngFor="let city of cities" [ngValue]="city">{{city}}</option>
+                    </select>
+                    <small class="form-text text-muted danger"
+                      *ngIf="!userProfileForm.get('city').valid && (userProfileForm.get('city').dirty || userProfileForm.get('city').touched)">Please
+                      select City</small>
+                  </div>
+                  <div class="form-group col-md-6 mb-2">
+                    <label class="sr-only" for="userinput6">State</label>
+                    <select id="userinput6" class="form-control border-primary" formControlName="state" required>
+                      <option value="" selected="" disabled="">State</option>
+                      <option *ngFor="let state of states" [ngValue]="state">{{state}}</option>
+                    </select>
+                    <small class="form-text text-muted danger"
+                      *ngIf="!userProfileForm.get('state').valid && (userProfileForm.get('state').dirty || userProfileForm.get('state').touched)">Please
+                      select State</small>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-md-6 mb-2">
+                    <label class="sr-only" for="userinput7">Country</label>
+                    <select id="userinput7" class="form-control border-primary" formControlName="country" required>
+                      <option value="" selected="" disabled="">Country</option>
+                      <option *ngFor="let value of country" [ngValue]="value">{{value}}</option>
+                    </select>
+                    <small class="form-text text-muted danger"
+                      *ngIf="!userProfileForm.get('country').valid && (userProfileForm.get('country').dirty || userProfileForm.get('country').touched)">Please
+                      select Country</small>
+                  </div>
+                  <div class="form-group col-md-6 mb-2">
+                    <label class="sr-only" for="userinput8">Zipcode</label>
+                    <input type="text" id="userinput8" class="form-control border-primary" placeholder="Pincode"
+                      formControlName="zipCode" required>
+                    <small class="form-text text-muted danger"
+                      *ngIf="!userProfileForm.get('zipCode').valid && (userProfileForm.get('zipCode').dirty || userProfileForm.get('zipCode').touched)">Please
+                      enter Pincode</small>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-12 mb-2">
+                    <label class="sr-only" for="userinput9">Address</label>
+                    <textarea id="userinput9" rows="5" class="form-control border-primary" placeholder="Address"
+                      formControlName="address" required></textarea>
+                    <small class="form-text text-muted danger"
+                      *ngIf="!userProfileForm.get('address').valid && (userProfileForm.get('address').dirty || userProfileForm.get('address').touched)">Please
+                      enter your Address</small>
+                  </div>
+                </div>
+              </div>
+              <div class="form-actions right">
+                <button type="button" class="btn btn-raised btn-warning mr-1" (click)=cancelUser();>
+                  <i class="ft-x"></i> Cancel
+                </button>
+                <button type="submit" class="btn btn-raised btn-primary"
+                  [disabled]="!(userProfileForm.valid && userProfileForm.dirty)">
+                  <i class="fa fa-check-square-o"></i> Update
+                </button>
+              </div>
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Upload Photo</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="row">
+      <div class="col-md-12">
+        <input type="file" (change)="onSelectFile($event)">
+      </div>
+      <div class="col-md-12">
+        <img class="img-fluid" [src]="url">
+      </div>
+      <br />
+      <div class="col-md-12" *ngIf="progress">
+        <ngb-progressbar [value]="progress" type="success" [striped]="true" [animated]="true"></ngb-progressbar>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-raised btn-primary" (click)="uploadImage()"
+      [disabled]="!uploadImageBtn">Upload</button>
+  </div>
+</ng-template>
+<!-- // Hidden label form layout section end -->

@@ -1,0 +1,113 @@
+<!-- Hidden label form layout section start -->
+<section id="hidden-label-form-layouts">
+  <div class="row text-left justify-content-center" matchHeight="card">
+
+    <div class="col-md-7">
+      <div class="card removeHeight">
+        <div class="card-header pb-2">
+          <h4 class="card-title text-center" id="hidden-label-colored-controls">Acceptor {{value}}</h4>
+        </div>
+        <div class="card-content">
+          <div class="px-3">
+            <form class="form" [formGroup]="acceptorForm" (ngSubmit)="registerAcceptor()" novalidate>
+              <div class="form-body">
+                <h4 class="form-section"><i class="ft-info"></i> Acceptor Information</h4>
+                <div class="row">
+                  <div class="form-group col-md-6 mb-2">
+                    <label class="sr-only" for="userinput1">Full Name</label>
+                    <input type="text" id="userinput1" class="form-control border-primary" placeholder="First Name"
+                      formControlName="fullName" required>
+                    <small class="form-text text-muted danger"
+                      *ngIf="!acceptorForm.get('fullName').valid && (acceptorForm.get('fullName').dirty || acceptorForm.get('fullName').touched)">Please
+                      enter Full Name</small>
+                  </div>
+                  <div class="form-group col-md-6 mb-2">
+                    <label class="sr-only" for="userinput2">Mobile Number</label>
+                    <input type="text" id="userinput2" class="form-control border-primary" placeholder="Mobile Number"
+                      formControlName="phoneNumber" required>
+                    <small class="form-text text-muted danger"
+                      *ngIf="phoneNumber.invalid && (acceptorForm.get('phoneNumber').dirty || acceptorForm.get('phoneNumber').touched)">
+                      <div *ngIf="phoneNumber.errors?.required">
+                        Please enter Mobile Number.
+                      </div>
+                      <div *ngIf="phoneNumber.errors?.pattern">
+                        Please enter a valid Mobile Number.
+                      </div>
+                      <div *ngIf="phoneNumber.errors?.phoneNumberExist">
+                        Oops..!! Mobile Number Already Taken.
+                      </div>
+                    </small>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-md-6 mb-2">
+                    <label class="sr-only" for="userinput1">City</label>
+                    <select id="projectinput7" class="form-control border-primary" formControlName="city" required>
+                      <option [ngValue]="null" disabled>City</option>
+                      <option *ngFor="let city of cities" [ngValue]="city">{{city}}</option>
+                    </select>
+                    <small class="form-text text-muted danger"
+                      *ngIf="!acceptorForm.get('city').valid && (acceptorForm.get('city').dirty || acceptorForm.get('city').touched)">Please
+                      select City</small>
+                  </div>
+                  <div class="form-group col-md-6 mb-2">
+                    <label class="sr-only" for="userinput2">State</label>
+                    <select id="projectinput7" class="form-control border-primary" formControlName="state" required>
+                      <option [ngValue]="null" disabled>State</option>
+                      <option *ngFor="let state of states" [ngValue]="state">{{state}}</option>
+                    </select>
+                    <small class="form-text text-muted danger"
+                      *ngIf="!acceptorForm.get('state').valid && (acceptorForm.get('state').dirty || acceptorForm.get('state').touched)">Please
+                      select State</small>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-md-6 mb-2">
+                    <label class="sr-only" for="userinput1">Country</label>
+                    <select id="projectinput7" class="form-control border-primary" formControlName="country" required>
+                      <option [ngValue]="null" disabled>Country</option>
+                      <option *ngFor="let value of country" [ngValue]="value">{{value}}</option>
+                    </select>
+                    <small class="form-text text-muted danger"
+                      *ngIf="!acceptorForm.get('country').valid && (acceptorForm.get('country').dirty || acceptorForm.get('country').touched)">Please
+                      select Country</small>
+                  </div>
+                  <div class="form-group col-md-6 mb-2">
+                    <label class="sr-only" for="userinput2">Zipcode</label>
+                    <input type="text" id="userinput2" class="form-control border-primary" placeholder="Pincode"
+                      formControlName="zipCode" required>
+                    <small class="form-text text-muted danger"
+                      *ngIf="!acceptorForm.get('zipCode').valid && (acceptorForm.get('zipCode').dirty || acceptorForm.get('zipCode').touched)">Please
+                      enter Pincode</small>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-12 mb-2">
+                    <label class="sr-only" for="userinput8">Address</label>
+                    <textarea id="userinput8" rows="5" class="form-control border-primary" placeholder="Address"
+                      formControlName="address" required></textarea>
+                    <small class="form-text text-muted danger"
+                      *ngIf="!acceptorForm.get('address').valid && (acceptorForm.get('address').dirty || acceptorForm.get('address').touched)">Please
+                      enter your Address</small>
+                  </div>
+                </div>
+              </div>
+              <div class="form-actions right">
+                <button type="button" class="btn btn-raised btn-warning mr-1" (click)=cancelAcceptor();>
+                  <i class="ft-x"></i> {{cancelButtonLabel}}
+                </button>
+                <button type="submit" class="btn btn-raised btn-primary"
+                  [disabled]="!(acceptorForm.valid && acceptorForm.dirty)" *ngIf="!flag">
+                  <i class="fa fa-check-square-o"></i> {{saveButtonLabel}}
+                </button>
+              </div>
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+<!-- // Hidden label form layout section end -->

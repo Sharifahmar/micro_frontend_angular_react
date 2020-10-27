@@ -1,0 +1,175 @@
+<!-- Hidden label form layout section start -->
+<section id="hidden-label-form-layouts">
+  <div class="row text-left justify-content-center" matchHeight="card">
+
+    <div class="col-md-7">
+      <div class="card removeHeight">
+        <div class="card-header pb-2">
+          <h4 class="card-title text-center" id="hidden-label-colored-controls">Student {{value}}</h4>
+
+        </div>
+        <div class="card-content">
+          <div class="px-3">
+            <form class="form" [formGroup]="studentForm" (ngSubmit)="registerStudent()" novalidate>
+              <div class="form-body">
+                <h4 class="form-section"><i class="ft-info"></i> Student Information</h4>
+                <div class="row">
+                  <div class="form-group col-md-6 mb-2">
+                    <label class="sr-only" for="userinput1">First Name</label>
+                    <input type="text" id="userinput1" class="form-control border-primary" placeholder="First Name" formControlName="firstName" required>
+                    <small class="form-text text-muted danger" *ngIf="!studentForm.get('firstName').valid && (studentForm.get('firstName').dirty || studentForm.get('firstName').touched)">Please
+                      enter First Name</small>
+                  </div>
+                  <div class="form-group col-md-6 mb-2">
+                    <label class="sr-only" for="userinput2">Last Name</label>
+                    <input type="text" id="userinput2" class="form-control border-primary" placeholder="Last Name" formControlName="lastName" required>
+                    <small class="form-text text-muted danger" *ngIf="!studentForm.get('lastName').valid && (studentForm.get('lastName').dirty || studentForm.get('lastName').touched)">Please
+                      enter Last Name</small>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-md-6 mb-2">
+                    <label class="sr-only" for="userinput1">Mother Name</label>
+                    <input type="text" id="userinput1" class="form-control border-primary" placeholder="Mother Name" formControlName="motherName" required>
+                    <small class="form-text text-muted danger" *ngIf="!studentForm.get('motherName').valid && (studentForm.get('motherName').dirty || studentForm.get('motherName').touched)">Please
+                      enter Mother Name</small>
+                  </div>
+                  <div class="form-group col-md-6 mb-2">
+                    <label class="sr-only" for="userinput2">Father Name</label>
+                    <input type="text" id="userinput2" class="form-control border-primary" placeholder="Father Name" formControlName="fatherName" required>
+                    <small class="form-text text-muted danger" *ngIf="!studentForm.get('fatherName').valid && (studentForm.get('fatherName').dirty || studentForm.get('fatherName').touched)">Please
+                      enter Father Name</small>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-md-6 mb-2">
+                    <label class="sr-only" for="userinput2">Mobile Number</label>
+                    <input type="text" id="userinput2" class="form-control border-primary" placeholder="Mobile Number" formControlName="phoneNumber" required>
+                    <small class="form-text text-muted danger" *ngIf="phoneNumber.invalid && (studentForm.get('phoneNumber').dirty || studentForm.get('phoneNumber').touched)">
+                      <div *ngIf="phoneNumber.errors?.required">
+                        Please enter Mobile Number.
+                      </div>
+                      <div *ngIf="phoneNumber.errors?.pattern">
+                        Please enter a valid Mobile Number.
+                      </div>
+                      <!-- <div *ngIf="phoneNumber.errors?.aadharNumberExist">
+                        Oops..!! Aadhar Number Already Taken.
+                      </div> -->
+                    </small>
+                  </div>
+                  <div class="form-group col-md-6 mb-2">
+                    <label class="sr-only" for="userinput1">Aadhaar Number</label>
+                    <input type="text" id="userinput1" class="form-control border-primary" placeholder="Aadhaar Number" formControlName="aadhaarNumber" required>
+                    <small class="form-text text-muted danger" *ngIf="aadhaarNumber.invalid && (studentForm.get('aadhaarNumber').dirty || studentForm.get('aadhaarNumber').touched)">
+                      <div *ngIf="aadhaarNumber.errors?.required">
+                        Please enter Aadhaar Number.
+                      </div>
+                      <div *ngIf="aadhaarNumber.errors?.pattern">
+                        Please enter valid Aadhaar Number.
+                      </div>
+                      <div *ngIf="aadhaarNumber.errors?.aadharNumberExist">
+                        Oops..!! Aadhaar Number Already Taken.
+                      </div>
+                    </small>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-md-6 mb-2">
+                    <label class="sr-only" for="userinput2">Class Name</label>
+                    <input type="text" id="userinput2" class="form-control border-primary" placeholder="Class Name" formControlName="className" required>
+                    <small class="form-text text-muted danger" *ngIf="!studentForm.get('className').valid && (studentForm.get('className').dirty || studentForm.get('className').touched)">Please
+                      enter Class Name</small>
+                  </div>
+                  <div class="form-group col-md-6 mb-2">
+                    <label class="sr-only" for="userinput2">Grade</label>
+                    <input type="text" id="userinput2" class="form-control border-primary" placeholder="Grade" formControlName="grade" required>
+                    <small class="form-text text-muted danger" *ngIf="!studentForm.get('grade').valid && (studentForm.get('grade').dirty || studentForm.get('grade').touched)">Please
+                      enter Grade</small>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-md-6 mb-2">
+                    <label class="sr-only" for="userinput2">ID Number</label>
+                    <input type="text" id="userinput2" class="form-control border-primary" placeholder="ID Number" formControlName="idNumber" required>
+                    <small class="form-text text-muted danger" *ngIf="!studentForm.get('idNumber').valid && (studentForm.get('idNumber').dirty || studentForm.get('idNumber').touched)">Please
+                      enter ID Number</small>
+                  </div>
+                  <div class="form-group col-md-6 mb-2">
+                    <label class="sr-only" for="userinput2">SUB ID Number</label>
+                    <input type="text" id="userinput2" class="form-control border-primary" placeholder="SUB ID Number" formControlName="subId" required>
+                    <!-- <small class="form-text text-muted danger"
+                      *ngIf="!studentForm.get('subIdNumber').valid && (studentForm.get('subIdNumber').dirty || studentForm.get('subIdNumber').touched)">Please
+                      enter Grade</small> -->
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-12 mb-2">
+                    <label class="sr-only" for="userinput9">School Name</label>
+                    <textarea id="userinput9" rows="2" class="form-control border-primary" placeholder="School Name" formControlName="schoolName" required></textarea>
+                    <small class="form-text text-muted danger" *ngIf="!studentForm.get('schoolName').valid && (studentForm.get('schoolName').dirty || studentForm.get('schoolName').touched)">Please
+                      enter School Name</small>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-md-6 mb-2">
+                    <label class="sr-only" for="userinput1">City</label>
+                    <select id="projectinput7" class="form-control border-primary" formControlName="city" required>
+                      <option value="" selected="" disabled="">City</option>
+                      <option *ngFor="let city of cities" [ngValue]="city">{{city}}</option>
+                    </select>
+                    <small class="form-text text-muted danger" *ngIf="!studentForm.get('city').valid && (studentForm.get('city').dirty || studentForm.get('city').touched)">Please
+                      select City</small>
+                  </div>
+                  <div class="form-group col-md-6 mb-2">
+                    <label class="sr-only" for="userinput2">State</label>
+                    <select id="projectinput7" class="form-control border-primary" formControlName="state" required>
+                      <option value="" selected="" disabled="">State</option>
+                      <option *ngFor="let state of states" [ngValue]="state">{{state}}</option>
+                    </select>
+                    <small class="form-text text-muted danger" *ngIf="!studentForm.get('state').valid && (studentForm.get('state').dirty || studentForm.get('state').touched)">Please
+                      select State</small>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-md-6 mb-2">
+                    <label class="sr-only" for="userinput1">Country</label>
+                    <select id="projectinput7" class="form-control border-primary" formControlName="country" required>
+                      <option value="" selected="" disabled="">Country</option>
+                      <option *ngFor="let value of country" [ngValue]="value">{{value}}</option>
+                    </select>
+                    <small class="form-text text-muted danger" *ngIf="!studentForm.get('country').valid && (studentForm.get('country').dirty || studentForm.get('country').touched)">Please
+                      select Country</small>
+                  </div>
+                  <div class="form-group col-md-6 mb-2">
+                    <label class="sr-only" for="userinput2">Zipcode</label>
+                    <input type="text" id="userinput2" class="form-control border-primary" placeholder="Pincode" formControlName="zipCode" required>
+                    <small class="form-text text-muted danger" *ngIf="!studentForm.get('zipCode').valid && (studentForm.get('zipCode').dirty || studentForm.get('zipCode').touched)">Please
+                      enter Pincode</small>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-12 mb-2">
+                    <label class="sr-only" for="userinput8">Address</label>
+                    <textarea id="userinput8" rows="5" class="form-control border-primary" placeholder="Address" formControlName="address" required></textarea>
+                    <small class="form-text text-muted danger" *ngIf="!studentForm.get('address').valid && (studentForm.get('address').dirty || studentForm.get('address').touched)">Please
+                      enter your Address</small>
+                  </div>
+                </div>
+              </div>
+              <div class="form-actions right">
+                <button type="button" class="btn btn-raised btn-warning mr-1" (click)=cancelDonar();>
+                  <i class="ft-x"></i> {{cancelButtonLabel}}
+                </button>
+                <button type="submit" class="btn btn-raised btn-primary" [disabled]="studentForm.invalid" *ngIf="!flag">
+                  <i class="fa fa-check-square-o"></i> {{saveButtonLabel}}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+<!-- // Hidden label form layout section end -->

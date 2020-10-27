@@ -1,0 +1,32 @@
+<!-- Filter Datatable Options Starts -->
+<section id="filter" class="mb-3">
+  <div class="row text-left">
+    <div class="col-12">
+      <div class="content-header">Filter Option</div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 col-sm-12">
+      <input type='text' class="form-control" style='margin:5px 0;width:30%;' placeholder='filter through name' (keyup)='updateFilter($event)' />
+      <ngx-datatable #table class='bootstrap' [columns]="columns" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [limit]="10" [rows]='rows' [sorts]="[{prop: 'firstName', dir: 'asc'}]">
+        <ngx-datatable-footer>
+          <ng-template ngx-datatable-footer-template let-rowCount="rowCount">
+            <div class="col-md-5">
+              Total : {{ rowCount }}
+            </div>
+          </ng-template>
+        </ngx-datatable-footer>
+      </ngx-datatable>
+    </div>
+  </div>
+  <ng-template #hdrTpl let-column="column">
+    <strong> {{ column.name }}</strong>
+  </ng-template>
+  <ng-template #editTmpl let-row="row" let-value="value">
+    <a class="icon-hover" title="View"><i class="ft-file-text success font-medium-2 mr-2" (click)="view(row);"></i></a>
+    <a class="icon-hover" title="Add"><i class="ft-file-plus primary font-medium-2 mr-2" (click)="addView();"></i></a>
+    <a class="icon-hover" title="Edit"><i class="ft-edit-2 info font-medium-2 mr-2" (click)="editView(row);"></i></a>
+    <a class="icon-hover" title="Delete"><i class="ft-x danger info font-medium-2 mr-2" (click)="deleteView(row);"></i> </a>
+  </ng-template>
+</section>
+<!-- Filter Datatable Options Ends -->

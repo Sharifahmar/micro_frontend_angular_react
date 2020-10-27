@@ -1,0 +1,154 @@
+<!-- Hidden label form layout section start -->
+<section id="hidden-label-form-layouts">
+  <div class="row text-left justify-content-center" matchHeight="card">
+
+    <div class="col-md-7">
+      <div class="card removeHeight">
+        <div class="card-header pb-2">
+          <h4 class="card-title text-center" id="hidden-label-colored-controls">Donor {{value}}</h4>
+
+        </div>
+        <div class="card-content">
+          <div class="px-3">
+            <form class="form" [formGroup]="donarForm" (ngSubmit)="registerDonar()" novalidate>
+              <div class="form-body">
+                <h4 class="form-section"><i class="ft-info"></i> Donor Information</h4>
+                <div class="row" *ngIf="imgUpload">
+                  <div class="col-md-6 offset-md-4 mb-2">
+                    <div class="card removeHeight">
+                      <div class="card-content">
+                        <div class="card-img custom-card">
+                          <img class="img-fluid"
+                            [src]="profileUrl !== '' ? profileUrl : 'assets/img/default/default.png'"
+                            alt="Donor Profile Image">
+                          <a class="btn btn-floating halfway-fab bg-warning custom-right" (click)="open(content)"
+                            *ngIf="popupBtn"><i class="ft-plus"></i></a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-md-6 mb-2">
+                    <label class="sr-only" for="userinput1">Full Name</label>
+                    <input type="text" id="userinput1" class="form-control border-primary" placeholder="Full Name"
+                      formControlName="fullName" required>
+                    <small class="form-text text-muted danger"
+                      *ngIf="!donarForm.get('fullName').valid && (donarForm.get('fullName').dirty || donarForm.get('fullName').touched)">Please
+                      enter Full Name</small>
+                  </div>
+                  <div class="form-group col-md-6 mb-2">
+                    <label class="sr-only" for="userinput2">Mobile Number</label>
+                    <input type="text" id="userinput2" class="form-control border-primary" placeholder="Mobile Number"
+                      formControlName="phoneNumber" required>
+                    <small class="form-text text-muted danger"
+                      *ngIf="phoneNumber.invalid && (donarForm.get('phoneNumber').dirty || donarForm.get('phoneNumber').touched)">
+                      <div *ngIf="phoneNumber.errors?.required">
+                        Please enter Mobile Number.
+                      </div>
+                      <div *ngIf="phoneNumber.errors?.pattern">
+                        Please enter a valid Mobile Number.
+                      </div>
+                      <div *ngIf="phoneNumber.errors?.phoneNumberExist">
+                        Oops..!! Mobile Number Already Taken.
+                      </div>
+                    </small>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-md-6 mb-2">
+                    <label class="sr-only" for="userinput1">City</label>
+                    <select id="projectinput7" class="form-control border-primary" formControlName="city" required>
+                      <option [ngValue]="null" disabled>City</option>
+                      <option *ngFor="let city of cities" [ngValue]="city">{{city}}</option>
+                    </select>
+                    <small class="form-text text-muted danger"
+                      *ngIf="!donarForm.get('city').valid && (donarForm.get('city').dirty || donarForm.get('city').touched)">Please
+                      select City</small>
+                  </div>
+                  <div class="form-group col-md-6 mb-2">
+                    <label class="sr-only" for="userinput2">State</label>
+                    <select id="projectinput7" class="form-control border-primary" formControlName="state" required>
+                      <option [ngValue]="null" disabled>State</option>
+                      <option *ngFor="let state of states" [ngValue]="state">{{state}}</option>
+                    </select>
+                    <small class="form-text text-muted danger"
+                      *ngIf="!donarForm.get('state').valid && (donarForm.get('state').dirty || donarForm.get('state').touched)">Please
+                      select State</small>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-md-6 mb-2">
+                    <label class="sr-only" for="userinput1">Country</label>
+                    <select id="projectinput7" class="form-control border-primary" formControlName="country" required>
+                      <option [ngValue]="null" disabled>Country</option>
+                      <option *ngFor="let value of country" [ngValue]="value">{{value}}</option>
+                    </select>
+                    <small class="form-text text-muted danger"
+                      *ngIf="!donarForm.get('country').valid && (donarForm.get('country').dirty || donarForm.get('country').touched)">Please
+                      select Country</small>
+                  </div>
+                  <div class="form-group col-md-6 mb-2">
+                    <label class="sr-only" for="userinput10">Zipcode</label>
+                    <input type="text" id="userinput10" class="form-control border-primary" placeholder="Pincode"
+                      formControlName="zipCode" required>
+                    <small class="form-text text-muted danger"
+                      *ngIf="!donarForm.get('zipCode').valid && (donarForm.get('zipCode').dirty || donarForm.get('zipCode').touched)">Please
+                      enter Pincode</small>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-12 mb-2">
+                    <label class="sr-only" for="userinput8">Address</label>
+                    <textarea id="userinput8" rows="5" class="form-control border-primary" placeholder="Address"
+                      formControlName="address" required></textarea>
+                    <small class="form-text text-muted danger"
+                      *ngIf="!donarForm.get('address').valid && (donarForm.get('address').dirty || donarForm.get('address').touched)">Please
+                      enter your Address</small>
+                  </div>
+                </div>
+              </div>
+              <div class="form-actions right">
+                <button type="button" class="btn btn-raised btn-warning mr-1" (click)=cancelDonar();>
+                  <i class="ft-x"></i> {{cancelButtonLabel}}
+                </button>
+                <button type="submit" class="btn btn-raised btn-primary"
+                  [disabled]="!(donarForm.valid && donarForm.dirty)" *ngIf="!flag">
+                  <i class="fa fa-check-square-o"></i> {{saveButtonLabel}}
+                </button>
+              </div>
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Upload Photo</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="row">
+      <div class="col-md-12">
+        <input type="file" (change)="onSelectFile($event)">
+      </div>
+      <div class="col-md-12">
+        <img class="img-fluid" [src]="url">
+      </div>
+      <br />
+      <div class="col-md-12" *ngIf="progress">
+        <ngb-progressbar [value]="progress" type="success" [striped]="true" [animated]="true"></ngb-progressbar>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-raised btn-primary" (click)="uploadImage()"
+      [disabled]="!uploadImageBtn">Upload</button>
+  </div>
+</ng-template>
+<!-- // Hidden label form layout section end -->

@@ -1,0 +1,66 @@
+<!-- Hidden label form layout section start -->
+<section id="hidden-label-form-layouts">
+  <div class="row text-left justify-content-center" matchHeight="card">
+
+    <div class="col-md-7">
+      <div class="card">
+        <div class="card-header pb-2">
+          <h4 class="card-title text-center" id="hidden-label-colored-controls">Donation {{value}}</h4>
+
+        </div>
+        <div class="card-content">
+          <div class="px-3">
+            <form class="form" [formGroup]="donationTypeForm" (ngSubmit)="registerDonationType()" novalidate>
+              <div class="form-body">
+                <h4 class="form-section"><i class="ft-info"></i> Donation Type</h4>
+                <div class="row">
+                  <div class="form-group col-md-6 mb-2">
+                    <label class="sr-only" for="userinput1">Donation Name</label>
+                    <input type="text" id="userinput1" class="form-control border-primary" placeholder="Donation Name"
+                      formControlName="donationTypeName" required>
+                    <small class="form-text text-muted danger"
+                      *ngIf="!donationTypeForm.get('donationTypeName').valid && (donationTypeForm.get('donationTypeName').dirty || donationTypeForm.get('donationTypeName').touched)">Please
+                      enter Donation Type Name</small>
+                  </div>
+
+                  <div class="form-group col-md-6 mb-2">
+                    <label class="sr-only" for="userinput1">Donation Type</label>
+                    <input type="text" id="userinput1" class="form-control border-primary" placeholder="Donation Type"
+                      formControlName="donationType" required>
+                    <small class="form-text text-muted danger"
+                      *ngIf="!donationTypeForm.get('donationType').valid && (donationTypeForm.get('donationType').dirty || donationTypeForm.get('donationType').touched)">
+
+                      <div *ngIf="donationTypeForm.get('donationType').errors?.required">
+                        Please enter DonationType.
+                      </div>
+
+                      <div *ngIf="donationTypeForm.get('donationType').errors?.donationTypeExist">
+                        Oops..!! DonationType is already there.
+                      </div>
+
+
+                    </small>
+                  </div>
+
+                </div>
+              </div>
+
+              <div class="form-actions right">
+                <button type="button" class="btn btn-raised btn-warning mr-1" (click)=cancelDonar();>
+                  <i class="ft-x"></i> {{cancelButtonLabel}}
+                </button>
+                <button type="submit" class="btn btn-raised btn-primary" [disabled]="donationTypeForm.invalid"
+                  *ngIf="!flag">
+                  <i class="fa fa-check-square-o"></i> {{saveButtonLabel}}
+                </button>
+              </div>
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+<!-- // Hidden label form layout section end -->
