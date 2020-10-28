@@ -8,6 +8,7 @@ import { customAnimations } from "../animations/custom-animations";
 import { ConfigService } from '../services/config.service';
 import { LayoutService } from '../services/layout.service';
 import { Subscription } from 'rxjs';
+import { assetUrl } from 'single-spa/asset-url';
 
 @Component({
   selector: "app-sidebar",
@@ -26,6 +27,7 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnDestroy {
   logoUrl = 'assets/img/logo.png';
   public config: any = {};
   layoutSub: Subscription;
+  imageUrl = assetUrl('img/logos/al-huda-logo-dashboard.png');
 
 
   constructor(

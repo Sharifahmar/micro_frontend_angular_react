@@ -1,11 +1,11 @@
 import { Component, ViewChild, TemplateRef, OnInit } from '@angular/core';
-import { DatatableComponent } from "@swimlane/ngx-datatable/release";
 import { Router } from '@angular/router';
 import { DonarModel } from '../helper/model/donar-model';
 import swal from 'sweetalert2';
 import { DonationTypeService } from '../service/donationType.service';
 import { DonationType } from '../helper/model/donationType-model';
 import { LoaderComponentService } from '../shared/behavior-subject-service/loader-component-interaction.service';
+import { DatatableComponent } from '@swimlane/ngx-datatable';
 
 
 

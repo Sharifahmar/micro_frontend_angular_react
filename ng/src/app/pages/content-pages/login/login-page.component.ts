@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { LoginAuthService } from '../service/login-auth.service';
 import { LoginModel } from '../../../helper/model/login-model';
 import { NGXToastrService } from '../../../components/extra/toastr/toastr.service';
+import { assetUrl } from 'single-spa/asset-url';
 @Component({
     selector: 'app-login-page',
     templateUrl: './login-page.component.html',
@@ -14,6 +15,7 @@ export class LoginPageComponent implements OnInit {
     loginForm: FormGroup;
     loginModel: LoginModel = new LoginModel();
     loading: boolean = false;
+    imageUrl = assetUrl('img/logos/al-huda-logo-dashboard.png');
     constructor(private router: Router,
         private route: ActivatedRoute, private loginAuthService: LoginAuthService, private toastService: NGXToastrService) { }
 
@@ -24,6 +26,7 @@ export class LoginPageComponent implements OnInit {
         });
 
         sessionStorage.clear();
+
     }
     //  ,[checkEmailValidator(this.loginAuthService)]
     login(): void {
