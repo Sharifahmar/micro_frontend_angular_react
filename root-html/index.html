@@ -14,8 +14,11 @@
       {
         "imports": {
           "angular": "http://localhost:4200/main.js",
+          "@react-mf/react-app": "http://localhost:8080/react-mf-react-app.js",
           "single-spa": "https://cdnjs.cloudflare.com/ajax/libs/single-spa/5.5.0/system/single-spa.min.js",
-          "single-spa-layout": "https://unpkg.com/single-spa-layout@1.0.0-beta.2/dist/system/single-spa-layout.min.js"
+          "single-spa-layout": "https://unpkg.com/single-spa-layout@1.0.0-beta.2/dist/system/single-spa-layout.min.js",
+          "react": "https://cdn.jsdelivr.net/npm/react@16.13.1/umd/react.production.min.js",
+          "react-dom": "https://cdn.jsdelivr.net/npm/react-dom@16.13.1/umd/react-dom.production.min.js"
         }
       }
     </script>
@@ -26,24 +29,25 @@
     as="script" crossorigin="anonymous" />
   <script src='https://unpkg.com/core-js-bundle@3.1.4/minified.js'></script>
   <script src="https://unpkg.com/zone.js@0.10.3/dist/zone.js"></script>
+  <!--
   <script src="https://unpkg.com/import-map-overrides@1.15.1/dist/import-map-overrides.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/4.0.0/system.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/4.0.0/extras/amd.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/4.0.0/extras/named-exports.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/4.0.0/extras/named-register.min.js"></script>
-  <!-- <script src="https://cdn.jsdelivr.net/npm/import-map-overrides@2.1.0/dist/import-map-overrides.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/4.0.0/extras/named-register.min.js"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/import-map-overrides@2.1.0/dist/import-map-overrides.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/systemjs@6.7.1/dist/system.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/systemjs@6.7.1/dist/extras/amd.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/systemjs@6.7.1/dist/extras/named-exports.min.js"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/systemjs@6.7.1/dist/extras/named-exports.min.js"></script>
   <template id="single-spa-layout">
     <single-spa-router>
       <div class="main-content">
-        <route path="/">
+        <route path="ng">
           <application name="angular"></application>
         </route>
-        <!-- <route path="react">
-          <application name="@react-mf/react-ap"></application>
-        </route> -->
+        <route path="react">
+          <application name="@react-mf/react-app"></application>
+        </route>
       </div>
     </single-spa-router>
   </template>
@@ -51,7 +55,6 @@
 
 <body>
   <script>
-    // System.import('@react-mf/react-app');
     Promise.all([ System.import('single-spa'), System.import('single-spa-layout') ]).then(([ singleSpa, singleSpaLayout ]) => {
       const { constructApplications, constructLayoutEngine, constructRoutes } = singleSpaLayout;
       const { registerApplication, start } = singleSpa;
@@ -65,13 +68,11 @@
       });
       const layoutEngine = constructLayoutEngine({ routes, applications });
       applications.forEach(registerApplication);
-
       start();
     });
   </script>
   <!-- <import-map-overrides-full></import-map-overrides-full> -->
   <!-- <import-map-overrides-full show-when-local-storage="devtools" dev-libs></import-map-overrides-full> -->
-  <!-- "@react-mf/react-app": "http://localhost:8080/react-mf-react-app.js", -->
 </body>
 
 </html>
