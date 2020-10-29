@@ -1,0 +1,74 @@
+{
+  "name": "react-app",
+  "version": "0.1.0",
+  "private": true,
+  "devDependencies": {
+    "@babel/core": "^7.10.3",
+    "@babel/plugin-proposal-class-properties": "^7.10.1",
+    "@babel/plugin-proposal-decorators": "^7.10.3",
+    "@babel/preset-env": "^7.10.3",
+    "@babel/preset-react": "^7.10.1",
+    "@testing-library/react": "^10.4.3",
+    "@types/jest": "^26.0.3",
+    "autoprefixer": "^9.8.4",
+    "babel-eslint": "^10.1.0",
+    "babel-jest": "^26.1.0",
+    "babel-loader": "^8.1.0",
+    "concurrently": "^5.2.0",
+    "css-loader": "^3.6.0",
+    "eslint": "^7.3.1",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-config-react-important-stuff": "^2.0.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "husky": "^4.2.5",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^26.1.0",
+    "jest-cli": "^26.1.0",
+    "prettier": "^2.0.5",
+    "pretty-quick": "^2.0.1",
+    "react-router": "^5.2.0",
+    "react-router-dom": "^5.2.0",
+    "single-spa-react": "^3.1.0",
+    "style-loader": "^1.2.1",
+    "systemjs-webpack-interop": "^2.1.1",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.12",
+    "webpack-config-single-spa-react": "^1.10.0",
+    "webpack-dev-server": "^3.11.0",
+    "webpack-merge": "^4.2.2"
+  },
+  "dependencies": {
+    "@testing-library/jest-dom": "^5.11.5",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-scripts": "4.0.0",
+    "single-spa-react": "^3.1.0",
+    "web-vitals": "^0.2.4"
+  },
+  "scripts": {
+    "start": "webpack-dev-server",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
