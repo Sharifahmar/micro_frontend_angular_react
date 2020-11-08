@@ -1,5 +1,7 @@
 const webpackMerge = require("webpack-merge");
 const singleSpaDefaults = require("webpack-config-single-spa-react");
+const DeadCodePlugin = require('webpack-deadcode-plugin');
+
 const path = require("path");
 
 module.exports = (webpackConfigEnv) => {
@@ -12,6 +14,14 @@ module.exports = (webpackConfigEnv) => {
     const rxjsExternals = {
         externals: [ /^rxjs\/?.*$/ ],
     };
+
+    // const unusedFileWarning = {
+    //     plugins: [
+    //         new DeadCodePlugin({
+    //             detectUnusedFiles: false
+    //         })
+    //     ]
+    // };
 
     return webpackMerge.smart(defaultConfig, rxjsExternals, {
         module: {

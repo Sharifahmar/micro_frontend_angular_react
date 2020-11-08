@@ -5,8 +5,10 @@ import { App } from "./App";
 
 export default function Root(props) {
     return (
-        <BrowserRouter>
-            <Route exact path="/react/app" component={App} />
-        </BrowserRouter>
+        <React.StrictMode>
+            <BrowserRouter>
+                <Route exact path="/react/app" component={App} />
+            </BrowserRouter>
+        </React.StrictMode>
     );
 }
