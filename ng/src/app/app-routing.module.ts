@@ -9,18 +9,19 @@ import { CONTENT_ROUTES } from "./shared/routes/content-layout.routes";
 
 import { AuthGuard } from './shared/auth/auth-guard.service';
 import { APP_BASE_HREF } from '@angular/common';
+import { EmptyRouteComponent } from './empty-route/empty-route.component';
 
 const appRoutes: Routes = [
   {
     path: '',
-    redirectTo: 'pages/login',
+    redirectTo: 'ng/pages/login',
     pathMatch: 'full',
   },
   { path: '', component: FullLayoutComponent, data: { title: 'full Views' }, children: Full_ROUTES },
   { path: '', component: ContentLayoutComponent, data: { title: 'content Views' }, children: CONTENT_ROUTES, canActivate: [AuthGuard] },
   {
     path: '**',
-    redirectTo: 'pages/error'
+    component: EmptyRouteComponent
   }
 ];
 
@@ -28,7 +29,7 @@ const appRoutes: Routes = [
   imports: [RouterModule.forRoot(appRoutes)],
   exports: [RouterModule],
   providers: [
-    { provide: APP_BASE_HREF, useValue: '/ng' },
+    { provide: APP_BASE_HREF, useValue: '/' },
   ]
 })
 

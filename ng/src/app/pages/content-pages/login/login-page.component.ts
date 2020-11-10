@@ -36,7 +36,7 @@ export class LoginPageComponent implements OnInit {
         this.loginAuthService.getToken(this.loginModel).subscribe(response => {
             this.loading = false;
             sessionStorage.setItem('token', response.accessToken);
-            this.router.navigate(['/dashboard']);
+            this.router.navigate(['ng/dashboard']);
         },
             error => {
                 this.loading = false;
@@ -55,7 +55,7 @@ export class LoginPageComponent implements OnInit {
     // On registration link click
     onRegister() {
         sessionStorage.removeItem('token');
-        this.router.navigate(['/pages/register']);
+        this.router.navigate(['ng/pages/register']);
 
     }
 

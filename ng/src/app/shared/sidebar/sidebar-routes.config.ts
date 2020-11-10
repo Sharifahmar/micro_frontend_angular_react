@@ -4,32 +4,33 @@ import { RouteInfo } from './sidebar.metadata';
 export const ROUTES: RouteInfo[] = [
 
     {
-        path: '/dashboard', title: 'Dashboard', icon: 'ft-home', class: '', badge: '', badgeClass: '', isExternalLink: false,
+        path: '/ng/dashboard', title: 'Dashboard', icon: 'ft-home', class: '', badge: '', badgeClass: '', isExternalLink: false,
         submenu: [
             // { path: '/dashboard1', title: 'Dashboard1', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
             // { path: '/dashboard2', title: 'Dashboard2', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
         ]
     },
-    { path: '/DonorRecordsGrid', title: 'Donors', icon: 'ft-edit', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+    { path: '/ng/DonorRecordsGrid', title: 'Donors', icon: 'ft-edit', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
 
     {
         path: '', title: 'Donors Contribution', icon: 'ft-grid', class: 'has-sub', badge: '', badgeClass: '', isExternalLink: false, submenu: [
 
-            { path: '/DonarContributionRecordsGrid', title: 'General Donors', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
-            { path: '/MonthlyDonarContributionRecordsGrid', title: 'Monthly Donors', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+            { path: '/ng/DonarContributionRecordsGrid', title: 'General Donors', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+            { path: '/ng/MonthlyDonarContributionRecordsGrid', title: 'Monthly Donors', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
 
         ]
     },
-    { path: '/AcceptorRecordsGrid', title: 'Acceptors', icon: 'ft-grid', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
-    { path: '/AcceptorDonationRecordsGrid', title: 'Acceptors Donation', icon: 'ft-grid', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
-    { path: '/StudentRecordsGrid', title: 'Students', icon: 'ft-grid', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+    { path: '/ng/AcceptorRecordsGrid', title: 'Acceptors', icon: 'ft-grid', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+    { path: '/ng/AcceptorDonationRecordsGrid', title: 'Acceptors Donation', icon: 'ft-grid', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+    { path: '/ng/StudentRecordsGrid', title: 'Students', icon: 'ft-grid', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
     {
         path: '', title: 'Masters', icon: 'ft-aperture', class: 'has-sub', badge: '', badgeClass: '', isExternalLink: false,
         submenu: [
 
             // { path: '/master/DonationType', title: 'Donation Type', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
-            { path: '/master/DonationTypeGrid', title: 'Donation Type', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+            { path: '/ng/master/DonationTypeGrid', title: 'Donation Type', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
             { path: '/uikit/syntaxhighlighter', title: 'Syntax Highlighter', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+            { path: '/react/app', title: 'React App', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
             { path: '/uikit/helperclasses', title: 'Helper Classes', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
             { path: '/uikit/textutilities', title: 'Text Utilities', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
 

@@ -1,7 +1,7 @@
 import React, { Component, lazy, Suspense } from 'react'
 import './assets/sass/app.scss';
 import { BrowserRouter } from 'react-router-dom';
-import Spinner from 'react-bootstrap/Spinner';
+import { Spinner } from 'reactstrap';
 
 export class App extends Component {
   render() {
@@ -9,7 +9,7 @@ export class App extends Component {
     return (
       <React.StrictMode>
         <BrowserRouter>
-          <Suspense fallback={<Spinner animation="border" variant="secondary" />}>
+          <Suspense fallback={<Spinner color="success" />}>
             <InnerLayoutComponent />
           </Suspense>
         </BrowserRouter>

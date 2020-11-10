@@ -19,7 +19,7 @@ import { DataTablesAcceptorDonationComponent } from './data-tables-acceptordonat
 import { AcceptorsDonationComponent } from './acceptors/acceptors-donation/acceptors-donation.component';
 const routes: Routes = [
   {
-    path: '',
+    path: 'ng',
     children: [
       {
         path: 'dashboard',

@@ -99,7 +99,7 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
 
   logout(): void {
     sessionStorage.clear();
-    this.router.navigate(['pages/login']);
+    this.router.navigate(['ng/pages/login']);
 
   }
 

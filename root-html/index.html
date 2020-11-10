@@ -13,7 +13,7 @@
   <script type="systemjs-importmap">
       {
         "imports": {
-          "angular": "http://localhost:4200/main.js",
+          "ng": "http://localhost:4200/main.js",
           "@react-mf/react-app": "http://localhost:8080/react-mf-react-app.js",
           "single-spa": "https://cdnjs.cloudflare.com/ajax/libs/single-spa/5.5.0/system/single-spa.min.js",
           "single-spa-layout": "https://unpkg.com/single-spa-layout@1.0.0-beta.2/dist/system/single-spa-layout.min.js",
@@ -27,7 +27,6 @@
     rel="stylesheet" type="text/css" />
   <link href="http://localhost:4200/assets/fonts/feather/style.min.css" rel="stylesheet" />
   <link href="http://localhost:4200/assets/fonts/simple-line-icons/style.css" rel="stylesheet" />
-  <link rel="stylesheet" href="http://localhost:4200/assets/vendor/pace/themes/black/pace-theme-flash.css" />
   <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/single-spa/5.5.0/system/single-spa.min.js"
     as="script" crossorigin="anonymous" />
   <script src='https://unpkg.com/core-js-bundle@3.1.4/minified.js'></script>
@@ -49,7 +48,7 @@
     <single-spa-router>
       <div class="main-content">
         <route path="ng">
-          <application name="angular"></application>
+          <application name="ng"></application>
         </route>
         <route path="react">
           <application name="@react-mf/react-app"></application>

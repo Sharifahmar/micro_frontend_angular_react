@@ -1,8 +1,8 @@
 import React, { Component, Fragment } from 'react'
-import AsideComponent from './Aside/AsideComponent'
-import FooterComponent from './Footer/FooterComponent'
-import NavbarComponent from './Navbar/NavbarComponent'
-import SidebarComponent from './Sidebar/SidebarComponent'
+import AsideComponent from '../Components/Aside/AsideComponent'
+import FooterComponent from '../Components/Footer/FooterComponent'
+import NavbarComponent from '../Components/Navbar/NavbarComponent'
+import SidebarComponent from '../Components/Sidebar/SidebarComponent'
 
 
 export class InnerLayoutComponent extends Component {
@@ -11,9 +11,8 @@ export class InnerLayoutComponent extends Component {
             <Fragment>
                 <div className="wrapper">
                     <div className="app-sidebar" data-active-color="white" data-background-color="man-of-steel" data-image="assets/img/sidebar-bg/01.jpg">
-                        <div className="sidebar-background">
-                            <SidebarComponent />
-                        </div>
+                        <SidebarComponent />
+                        <div className="sidebar-background"></div>
                     </div>
                     <NavbarComponent />
                     <div className="main-panel">
