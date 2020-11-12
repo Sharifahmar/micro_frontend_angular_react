@@ -91,16 +91,16 @@ export class DTFilterAcceptorComponent implements OnInit {
         );
 
     addView(): void {
-        this.router.navigate(['/AddAcceptor']);
+        this.router.navigate(['ng/AddAcceptor']);
 
     }
 
     editView(data: any): void {
-        this.router.navigate(['/Acceptor', data.acceptorId, 'Edit']);
+        this.router.navigate(['ng/Acceptor', data.acceptorId, 'Edit']);
     }
 
     view(data: any): void {
-        this.router.navigate(['/Acceptor', data.acceptorId, 'View']);
+        this.router.navigate(['ng/Acceptor', data.acceptorId, 'View']);
     }
 
     deleteView(data: any): void {
@@ -204,6 +204,6 @@ export class DTFilterAcceptorComponent implements OnInit {
     }
 
     callAddRoute(): void {
-        this.router.navigate(['/AddAcceptor']);
+        this.router.navigate(['ng/AddAcceptor']);
     }
 }

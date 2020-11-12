@@ -37,17 +37,17 @@ export class InterceptorService implements HttpInterceptor {
             console.log("api call error :", error);
             switch (error.status) {
               case 401: {
-                this.router.navigate['/pages/error'];
+                this.router.navigate['ng/pages/error'];
                 break;
               }
               case 500: {
-                this.router.navigate['/pages/error'];
+                this.router.navigate['ng/pages/error'];
                 break;
               }
 
               default: {
-                this.router.navigate['/pages/login'];
-              
+                this.router.navigate['ng/pages/login'];
+
                 break;
               }
 

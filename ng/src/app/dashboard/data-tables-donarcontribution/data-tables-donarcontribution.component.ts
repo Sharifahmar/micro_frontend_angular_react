@@ -93,23 +93,22 @@ export class DataTablesDonarcontributionComponent implements OnInit {
     loadAllDonationType(): void {
         this.donationTypeSvc.getAllDonartionType().subscribe(response => {
             this.donationTypes = response._embedded.donationTypeEntities;
+            this.donationTypes.sort((a, b) => (a.donationType.toLowerCase() > b.donationType.toLowerCase() ? 1 : -1));
         },
             error => {
-
-                alertFunctions.custometypeError("Oops.!!", "Something went wrong..")
-
+                alertFunctions.custometypeError("Oops.!!", "Something went wrong..!!");
             });
     }
     addView(): void {
-        this.router.navigate(['/AddContribution']);
+        this.router.navigate(['ng/AddContribution']);
     }
 
     editView(data: any): void {
-        this.router.navigate(['/Contribution', data.donationAmountId, 'Edit']);
+        this.router.navigate(['ng/Contribution', data.donationAmountId, 'Edit']);
     }
 
     view(data: any): void {
-        this.router.navigate(['/Contribution', data.donationAmountId, 'View']);
+        this.router.navigate(['ng/Contribution', data.donationAmountId, 'View']);
     }
 
     deleteView(data: any): void {
@@ -202,7 +201,7 @@ export class DataTablesDonarcontributionComponent implements OnInit {
                     ...rows.map(ed => {
                         return [
                             { text: ed.dateString, alignment: 'center', fontSize: 11 },
-                            { text: ed.firstName + " " + ed.lastName, alignment: 'center', fontSize: 11 },
+                            { text: ed.fullName, alignment: 'center', fontSize: 11 },
                             { text: ed.receiptNumber, alignment: 'center', fontSize: 11 },
                             { text: ed.donationAmount, alignment: 'center', fontSize: 11 },
                             { text: ed.donationType, alignment: 'center', fontSize: 11 }

@@ -14,18 +14,23 @@
                   </p>
                   <form [formGroup]="registerForm" (ngSubmit)="register()" novalidate>
                     <div class="form-group">
-                      <input type="text" class="form-control" placeholder="First Name" formControlName="firstName" required />
-                      <small class="form-text text-muted danger" *ngIf="!registerForm.get('firstName').valid && (registerForm.get('firstName').dirty || registerForm.get('firstName').touched)">Please
+                      <input type="text" class="form-control" placeholder="First Name" formControlName="firstName"
+                        required />
+                      <small class="form-text text-muted danger"
+                        *ngIf="!registerForm.get('firstName').valid && (registerForm.get('firstName').dirty || registerForm.get('firstName').touched)">Please
                         enter First Name</small>
                     </div>
                     <div class="form-group">
-                      <input type="text" class="form-control" placeholder="Last Name" formControlName="lastName" required />
-                      <small class="form-text text-muted danger" *ngIf="!registerForm.get('lastName').valid && (registerForm.get('lastName').dirty || registerForm.get('lastName').touched)">Please
+                      <input type="text" class="form-control" placeholder="Last Name" formControlName="lastName"
+                        required />
+                      <small class="form-text text-muted danger"
+                        *ngIf="!registerForm.get('lastName').valid && (registerForm.get('lastName').dirty || registerForm.get('lastName').touched)">Please
                         enter Last Name</small>
                     </div>
                     <div class="form-group">
                       <input type="email" class="form-control" placeholder="Email" formControlName="email" required />
-                      <small class="form-text text-muted danger" *ngIf="email.invalid && (registerForm.get('email').dirty || registerForm.get('email').touched)">
+                      <small class="form-text text-muted danger"
+                        *ngIf="email.invalid && (registerForm.get('email').dirty || registerForm.get('email').touched)">
                         <div *ngIf="email.errors?.required">
                           Please enter Email.
                         </div>
@@ -38,8 +43,10 @@
                       </small>
                     </div>
                     <div class="form-group">
-                      <input type="tel" class="form-control" placeholder="Mobile Number" formControlName="phoneNumber" required />
-                      <small class="form-text text-muted danger" *ngIf="phoneNumber.invalid && (registerForm.get('phoneNumber').dirty || registerForm.get('phoneNumber').touched)">
+                      <input type="tel" class="form-control" placeholder="Mobile Number" formControlName="phoneNumber"
+                        required />
+                      <small class="form-text text-muted danger"
+                        *ngIf="phoneNumber.invalid && (registerForm.get('phoneNumber').dirty || registerForm.get('phoneNumber').touched)">
                         <div *ngIf="phoneNumber.errors?.required">
                           Please enter Mobile Number.
                         </div>
@@ -52,8 +59,10 @@
                       </small>
                     </div>
                     <div class="form-group">
-                      <input type="password" class="form-control" placeholder="Password" formControlName="password" required />
-                      <small class="form-text text-muted danger" *ngIf="!registerForm.get('password').valid && (registerForm.get('password').dirty || registerForm.get('password').touched)">
+                      <input type="password" class="form-control" placeholder="Password" formControlName="password"
+                        required />
+                      <small class="form-text text-muted danger"
+                        *ngIf="!registerForm.get('password').valid && (registerForm.get('password').dirty || registerForm.get('password').touched)">
                         <div *ngIf="password.errors?.required">
                           Please enter Passsword.
                         </div>
@@ -64,7 +73,7 @@
                     </div>
                     <div class="fg-actions d-flex justify-content-between">
                       <div class="login-btn">
-                        <a class="text-decoration-none" [routerLink]="['/pages/login']">
+                        <a class="text-decoration-none" [routerLink]="['ng/pages/login']">
                           <button class="btn btn-outline-primary">
                             Back To Login
                           </button>

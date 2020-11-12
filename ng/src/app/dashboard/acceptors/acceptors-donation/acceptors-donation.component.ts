@@ -21,7 +21,7 @@ export class AcceptorsDonationComponent implements OnInit {
     private donationTypeSvc: DonationTypeService,
     private acceptorAmountService: AcceptorAmountService,
     private route: ActivatedRoute
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.acceptorDonationForm = new FormGroup({
@@ -51,7 +51,7 @@ export class AcceptorsDonationComponent implements OnInit {
 
   cancelDoContribution(): void {
     this.acceptorDonationForm.reset();
-    this.router.navigate(["/AcceptorDonationRecordsGrid"]);
+    this.router.navigate(["ng/AcceptorDonationRecordsGrid"]);
   }
 
   registerDonationAmount(): void {

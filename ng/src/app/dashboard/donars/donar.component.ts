@@ -56,7 +56,7 @@ export class DonarComponent implements OnInit {
 
   cancelDonar(): void {
     this.donarForm.reset();
-    this.router.navigate(['/DonorRecordsGrid']);
+    this.router.navigate(['ng/DonorRecordsGrid']);
   }
 
   registerDonar(): void {

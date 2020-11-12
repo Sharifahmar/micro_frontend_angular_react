@@ -20,8 +20,8 @@
           </div>
           <div class="col-md-2 col-sm-3 col-xs-12">
             <div class="input-group">
-              <input class="form-control" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #d2="ngbDatepicker"
-                formControlName="fromDate">
+              <input class="form-control" placeholder="dd/mm/yyyy" name="dp" ngbDatepicker #d2="ngbDatepicker"
+                formControlName="fromDate" #c1="ngModel">
               <div class="input-group-append">
                 <div class="input-group-text" (click)="d2.toggle()">
                   <i class="fa fa-calendar" style="cursor: pointer;"></i>
@@ -31,8 +31,8 @@
           </div>
           <div class="col-md-2 col-sm-3 col-xs-12">
             <div class="input-group">
-              <input class="form-control" placeholder="yyyy-mm-dd" name="dp2" ngbDatepicker #d3="ngbDatepicker"
-                formControlName="toDate">
+              <input class="form-control" placeholder="dd/mm/yyyy" name="dp2" ngbDatepicker #d3="ngbDatepicker"
+                formControlName="toDate" #c2="ngModel">
               <div class="input-group-append">
                 <div class="input-group-text" (click)="d3.toggle()">
                   <i class="fa fa-calendar" style="cursor: pointer;"></i>
@@ -54,7 +54,7 @@
         </div>
       </form>
       <ngx-datatable #table class='bootstrap' [columns]="columns" [columnMode]="'force'" [headerHeight]="50"
-        [footerHeight]="50" [rowHeight]="'auto'" [limit]="10" [rows]='rows' [sorts]="[{prop: 'firstName', dir: 'asc'}]">
+        [footerHeight]="50" [rowHeight]="'auto'" [limit]="10" [rows]='rows' [sorts]="[{prop: 'fullName', dir: 'asc'}]">
         <ngx-datatable-footer>
           <ng-template ngx-datatable-footer-template let-rowCount="rowCount">
             <div class="col-md-4">

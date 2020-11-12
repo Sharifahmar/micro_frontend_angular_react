@@ -93,15 +93,15 @@ export class DTFilterComponent implements OnInit {
 
 
     addView(): void {
-        this.router.navigate(['/AddDonor']);
+        this.router.navigate(['ng/AddDonor']);
     }
 
     editView(data: any): void {
-        this.router.navigate(['/Donar', data.donarId, 'Edit']);
+        this.router.navigate(['ng/Donar', data.donarId, 'Edit']);
     }
 
     view(data: any): void {
-        this.router.navigate(['/Donar', data.donarId, 'View']);
+        this.router.navigate(['ng/Donar', data.donarId, 'View']);
     }
 
     deleteView(data: any): void {
@@ -204,6 +204,6 @@ export class DTFilterComponent implements OnInit {
     }
 
     callAddRoute(): void {
-        this.router.navigate(['/AddDonor']);
+        this.router.navigate(['ng/AddDonor']);
     }
 }

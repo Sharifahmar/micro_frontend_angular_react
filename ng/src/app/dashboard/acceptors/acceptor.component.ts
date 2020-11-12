@@ -45,7 +45,7 @@ export class AcceptorComponent implements OnInit {
 
   cancelAcceptor(): void {
     this.acceptorForm.reset();
-    this.router.navigate(['/AcceptorRecordsGrid']);
+    this.router.navigate(['ng/AcceptorRecordsGrid']);
   }
 
   registerAcceptor(): void {

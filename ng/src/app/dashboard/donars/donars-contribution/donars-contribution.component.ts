@@ -22,17 +22,12 @@ export class DonarsContributionComponent implements OnInit {
     private donationTypeSvc: DonationTypeService,
     private donationAmountService: DonationAmountService,
     private route: ActivatedRoute
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.donarContributionForm = new FormGroup({
       receiptNumber: new FormControl("", [Validators.required]),
-      firstName: new FormControl("", [Validators.required]),
-      lastName: new FormControl("", [Validators.required]),
-      email: new FormControl("", [
-        Validators.required,
-        Validators.pattern("^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"),
-      ]),
+      fullName: new FormControl("", [Validators.required]),
       phoneNumber: new FormControl("", [
         Validators.required,
         Validators.pattern("^[0-9]{10}$"),
@@ -52,7 +47,7 @@ export class DonarsContributionComponent implements OnInit {
 
   cancelDoContribution(): void {
     this.donarContributionForm.reset();
-    this.router.navigate(["/DonarContributionRecordsGrid"]);
+    this.router.navigate(["ng/DonarContributionRecordsGrid"]);
   }
 
   registerDonationAmount(): void {
@@ -134,19 +129,15 @@ export class DonarsContributionComponent implements OnInit {
           this.donarContributionForm.disable();
           break;
         case "Edit":
-          this.donarContributionForm.get("email").clearAsyncValidators();
           this.donarContributionForm.get("phoneNumber").clearAsyncValidators();
           this.donarContributionForm.controls["phoneNumber"].disabled;
-          this.donarContributionForm.controls["email"].disabled;
           this.cancelButtonLabel = "Cancel";
           this.saveButtonLabel = "Update";
           break;
 
         default:
-          this.donarContributionForm.removeControl("firstName");
-          this.donarContributionForm.removeControl("lastName");
+          this.donarContributionForm.removeControl("fullName");
           this.donarContributionForm.removeControl("address");
-          this.donarContributionForm.removeControl("email");
           this.cancelButtonLabel = "Cancel";
           this.saveButtonLabel = "Save";
           break;
@@ -163,9 +154,7 @@ export class DonarsContributionComponent implements OnInit {
     });
   }
 
-  get email() {
-    return this.donarContributionForm.get("email");
-  }
+
   get phoneNumber() {
     return this.donarContributionForm.get("phoneNumber");
   }

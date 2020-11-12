@@ -104,15 +104,15 @@ export class DataTablesAcceptorDonationComponent implements OnInit {
             });
     }
     addView(): void {
-        this.router.navigate(['/AddDonation']);
+        this.router.navigate(['ng/AddDonation']);
     }
 
     editView(data: any): void {
-        this.router.navigate(['/Donation', data.acceptorAmountId, 'Edit']);
+        this.router.navigate(['ng/Donation', data.acceptorAmountId, 'Edit']);
     }
 
     view(data: any): void {
-        this.router.navigate(['/Donation', data.acceptorAmountId, 'View']);
+        this.router.navigate(['ng/Donation', data.acceptorAmountId, 'View']);
     }
 
     deleteView(data: any): void {

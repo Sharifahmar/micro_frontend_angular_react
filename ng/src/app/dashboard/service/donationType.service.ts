@@ -15,7 +15,7 @@ export class DonationTypeService {
   private donationTypeApi: string = 'http://localhost:8081/donationTypeRepo';
   private donationTypeUpdateApi: string = 'http://localhost:8081/donationType/update';
   private getDonationTypeByIdAndStatusApi: string = 'http://localhost:8081/donationTypeRepo/search/donationTypeByIdAndStatus?value=true&id=';
-  private deleteDonationTypeByIdAndStatusApi: string ='http://localhost:8081/donationType/delete'
+  private deleteDonationTypeByIdAndStatusApi: string = 'http://localhost:8081/donationType/delete'
 
   constructor(private http: HttpClient) { }
 
