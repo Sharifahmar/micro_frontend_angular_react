@@ -1,7 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDateAdapter, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { ChartistModule } from 'ng-chartist';
@@ -28,6 +28,7 @@ import { checkEmailValidatorDirectiveDonar } from './helper/custom-validator/ema
 import { checkPhoneNumberValidatorDirective } from './helper/custom-validator/phoneNumber-async-validator';
 import { checkPhoneNumberValidatorDirectiveAcceptor } from './helper/custom-validator/phoneNumber-async-validator-acceptor';
 import { checkPhoneNumberValidatorDirectiveDonar } from './helper/custom-validator/phoneNumber-async-validator-donar';
+import { CustomAdapterDatepicker } from './helper/datePicker-formatter/CustomAdapterDatepicker';
 import { DonationTypeComponent } from './masters/donation-type/donation-type.component';
 import { StudentComponent } from './students/student.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';

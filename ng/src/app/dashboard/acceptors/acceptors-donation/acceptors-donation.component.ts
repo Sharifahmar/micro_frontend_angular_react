@@ -26,12 +26,7 @@ export class AcceptorsDonationComponent implements OnInit {
   ngOnInit() {
     this.acceptorDonationForm = new FormGroup({
       tokenNumber: new FormControl("", [Validators.required]),
-      firstName: new FormControl("", [Validators.required]),
-      lastName: new FormControl("", [Validators.required]),
-      email: new FormControl("", [
-        Validators.required,
-        Validators.pattern("^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"),
-      ]),
+      fullName: new FormControl("", [Validators.required]),
       phoneNumber: new FormControl("", [
         Validators.required,
         Validators.pattern("^[0-9]{10}$"),
@@ -132,19 +127,15 @@ export class AcceptorsDonationComponent implements OnInit {
           this.acceptorDonationForm.disable();
           break;
         case "Edit":
-          this.acceptorDonationForm.get("email").clearAsyncValidators();
           this.acceptorDonationForm.get("phoneNumber").clearAsyncValidators();
           this.acceptorDonationForm.controls["phoneNumber"].disabled;
-          this.acceptorDonationForm.controls["email"].disabled;
           this.cancelButtonLabel = "Cancel";
           this.saveButtonLabel = "Update";
           break;
 
         default:
-          this.acceptorDonationForm.removeControl("firstName");
-          this.acceptorDonationForm.removeControl("lastName");
-          this.acceptorDonationForm.removeControl("address");
-          this.acceptorDonationForm.removeControl("email");
+          // this.acceptorDonationForm.removeControl("fullName");
+          // this.acceptorDonationForm.removeControl("address");
           this.cancelButtonLabel = "Cancel";
           this.saveButtonLabel = "Save";
           break;
@@ -161,9 +152,6 @@ export class AcceptorsDonationComponent implements OnInit {
     });
   }
 
-  get email() {
-    return this.acceptorDonationForm.get("email");
-  }
 
   get phoneNumber() {
     return this.acceptorDonationForm.get("phoneNumber");

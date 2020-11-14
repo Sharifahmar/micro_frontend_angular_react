@@ -10,8 +10,8 @@
       <form class="form" [formGroup]="donarFormSearchCriteria" (ngSubmit)="doSearch()" novalidate>
         <div class="row">
           <div class="col-md-3 col-sm-3 col-xs-12">
-            <input type="text" id="mobileNumber" class="form-control" placeholder="Mobile Number"
-              formControlName="phoneNumber">
+            <input type="text" id="mobileNumber" class="form-control" placeholder="Type FullName"
+              formControlName="fullName" [ngbTypeahead]="search" [inputFormatter]="formatter">
           </div>
           <div class="col-md-3 col-sm-3 col-xs-12">
             <ng-select [items]="donationTypes" bindLabel="donationType" placeholder="Select Donation Type"
@@ -20,8 +20,8 @@
           </div>
           <div class="col-md-2 col-sm-3 col-xs-12">
             <div class="input-group">
-              <input class="form-control" placeholder="dd/mm/yyyy" name="dp" ngbDatepicker #d2="ngbDatepicker"
-                formControlName="fromDate" #c1="ngModel">
+              <input class="form-control" placeholder="dd-mm-yyyy" name="dp" ngbDatepicker #d2="ngbDatepicker"
+                formControlName="fromDate">
               <div class="input-group-append">
                 <div class="input-group-text" (click)="d2.toggle()">
                   <i class="fa fa-calendar" style="cursor: pointer;"></i>
@@ -31,8 +31,8 @@
           </div>
           <div class="col-md-2 col-sm-3 col-xs-12">
             <div class="input-group">
-              <input class="form-control" placeholder="dd/mm/yyyy" name="dp2" ngbDatepicker #d3="ngbDatepicker"
-                formControlName="toDate" #c2="ngModel">
+              <input class="form-control" placeholder="dd-mm-yyyy" name="dp2" ngbDatepicker #d3="ngbDatepicker"
+                formControlName="toDate">
               <div class="input-group-append">
                 <div class="input-group-text" (click)="d3.toggle()">
                   <i class="fa fa-calendar" style="cursor: pointer;"></i>

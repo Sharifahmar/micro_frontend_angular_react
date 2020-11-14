@@ -1,6 +1,9 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NgbDateAdapter } from '@ng-bootstrap/ng-bootstrap';
+import { Observable } from 'rxjs';
+import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 import swal from 'sweetalert2';
 import * as alertFunctions from '../../shared/data/sweet-alerts';
 import { DonarModel } from '../helper/model/donar-model';
@@ -25,18 +28,19 @@ export class DataTablesDonarcontributionComponent implements OnInit {
     donar: DonarModel = new DonarModel();
     donationTypes = [];
     amtCount: number;
+    fullNameArr = [];
 
-    constructor(private donarService: DonarService, private pdfgenerateService: PdfgenerateService, private router: Router, private loaderComponentService: LoaderComponentService, private donationAmountService: DonationAmountService, private donationTypeSvc: DonationTypeService) { }
+    constructor(private donarService: DonarService, private pdfgenerateService: PdfgenerateService, private router: Router, private loaderComponentService: LoaderComponentService, private donationAmountService: DonationAmountService, private donationTypeSvc: DonationTypeService,
+        private customAdapterDatepicker: NgbDateAdapter<string>) { }
 
     ngOnInit() {
 
         this.donarFormSearchCriteria = new FormGroup({
-            'firstName': new FormControl(),
-            'email': new FormControl(),
-            'phoneNumber': new FormControl(),
-            'donationType': new FormControl(),
-            'fromDate': new FormControl(),
-            'toDate': new FormControl()
+            'fullName': new FormControl(null),
+            'phoneNumber': new FormControl(null),
+            'donationType': new FormControl(null),
+            'fromDate': new FormControl(null),
+            'toDate': new FormControl(null)
         });
 
         // Table Column Titles
@@ -60,15 +64,15 @@ export class DataTablesDonarcontributionComponent implements OnInit {
         let fromDate = null;
         let toDate = null;
         this.donarFormSearchCriteria.get('donationType').value ? donationTypeObj = this.donarFormSearchCriteria.get('donationType').value.donationTypeId : null;// null check pls
-        this.donarFormSearchCriteria.get('fromDate').value ? fromDate = this.donarFormSearchCriteria.get('fromDate').value.year + '-' + this.donarFormSearchCriteria.get('fromDate').value.month + '-' + this.donarFormSearchCriteria.get('fromDate').value.day : null;
-        this.donarFormSearchCriteria.get('toDate').value ? toDate = this.donarFormSearchCriteria.get('toDate').value.year + '-' + this.donarFormSearchCriteria.get('toDate').value.month + '-' + this.donarFormSearchCriteria.get('toDate').value.day : null;
+        this.donarFormSearchCriteria.get('fromDate').value ? fromDate = this.donarFormSearchCriteria.get('fromDate').value : null;
+        this.donarFormSearchCriteria.get('toDate').value ? toDate = this.donarFormSearchCriteria.get('toDate').value : null;
         this.loaderComponentService.emitChange(true);
 
         const request = {
 
             "status": true,
             "fromDate": fromDate,
-            "phoneNumber": this.donarFormSearchCriteria.get('phoneNumber').value,
+            "fullName": this.donarFormSearchCriteria.get('fullName').value,
             "toDate": toDate,
             "donationTypeId": donationTypeObj
 
@@ -79,6 +83,7 @@ export class DataTablesDonarcontributionComponent implements OnInit {
                 this.loaderComponentService.emitChange(false);
                 response.status === true ? this.rows = response.data : alertFunctions.custometypeError("Oops.!!", "Something went wrong..");
                 this.amtCount = this.rows.map(x => parseInt(x.donationAmount)).reduce((a, b) => a + b, 0);
+                this.fullNameArr = this.rows.map(item => item.fullName);
             },
             error => {
                 this.loaderComponentService.emitChange(false);
@@ -142,7 +147,15 @@ export class DataTablesDonarcontributionComponent implements OnInit {
         }).catch(swal.noop);
 
     }
-
+    formatter = (result: string) => result;
+    // Default Search
+    search = (text$: Observable<string>) =>
+        text$.pipe(
+            debounceTime(200),
+            distinctUntilChanged(),
+            map(term => term === '' ? []
+                : this.fullNameArr.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10))
+        );
 
     getDocumentDefinition() {
         return {
@@ -218,5 +231,4 @@ export class DataTablesDonarcontributionComponent implements OnInit {
         this.pdfgenerateService.setDownloadParameter('donarsContributionList.pdf');
         this.pdfgenerateService.generatePdfSwitch(action);
     }
-
 }

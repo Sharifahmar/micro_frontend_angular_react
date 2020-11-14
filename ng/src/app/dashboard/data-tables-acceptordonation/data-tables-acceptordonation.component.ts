@@ -31,8 +31,7 @@ export class DataTablesAcceptorDonationComponent implements OnInit {
     ngOnInit() {
 
         this.acceptorFormSearchCriteria = new FormGroup({
-            'firstName': new FormControl(),
-            'email': new FormControl(),
+            'fullName': new FormControl(),
             'phoneNumber': new FormControl(),
             'donationType': new FormControl(),
             'fromDate': new FormControl(),
@@ -42,7 +41,7 @@ export class DataTablesAcceptorDonationComponent implements OnInit {
         // Table Column Titles
         this.columns = [
             { name: 'Token Number', prop: 'tokenNumber', headerTemplate: this.hdrTpl },
-            { name: 'First Name', prop: 'firstName', headerTemplate: this.hdrTpl },
+            { name: 'Full Name', prop: 'fullName', headerTemplate: this.hdrTpl },
             { name: 'Mobile Number', prop: 'phoneNumber', headerTemplate: this.hdrTpl },
             { name: 'Amount', prop: 'acceptorAmount', headerTemplate: this.hdrTpl },
             { name: 'Date', prop: 'dateString', headerTemplate: this.hdrTpl },
