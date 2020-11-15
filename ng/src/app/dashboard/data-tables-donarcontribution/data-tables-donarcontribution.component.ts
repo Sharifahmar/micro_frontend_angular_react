@@ -1,13 +1,11 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { NgbDateAdapter } from '@ng-bootstrap/ng-bootstrap';
 import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 import swal from 'sweetalert2';
 import * as alertFunctions from '../../shared/data/sweet-alerts';
 import { DonarModel } from '../helper/model/donar-model';
-import { DonarService } from '../service/donar.service';
 import { DonationAmountService } from '../service/donation-amount.service';
 import { DonationTypeService } from '../service/donationType.service';
 import { PdfgenerateService } from '../service/pdfgenerate.service';
@@ -30,8 +28,7 @@ export class DataTablesDonarcontributionComponent implements OnInit {
     amtCount: number;
     fullNameArr = [];
 
-    constructor(private donarService: DonarService, private pdfgenerateService: PdfgenerateService, private router: Router, private loaderComponentService: LoaderComponentService, private donationAmountService: DonationAmountService, private donationTypeSvc: DonationTypeService,
-        private customAdapterDatepicker: NgbDateAdapter<string>) { }
+    constructor(private pdfgenerateService: PdfgenerateService, private router: Router, private loaderComponentService: LoaderComponentService, private donationAmountService: DonationAmountService, private donationTypeSvc: DonationTypeService) { }
 
     ngOnInit() {
 

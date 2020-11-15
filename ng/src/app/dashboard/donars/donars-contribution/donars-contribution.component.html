@@ -22,10 +22,10 @@
                       *ngIf="!donarContributionForm.get('receiptNumber').valid && (donarContributionForm.get('receiptNumber').dirty || donarContributionForm.get('receiptNumber').touched)">Please
                       enter Receipt Number</small>
                   </div>
-                  <div class="form-group col-md-6 mb-2" *ngIf="flag">
+                  <div class="form-group col-md-6 mb-2">
                     <label class="sr-only" for="userinput1">Full Name</label>
                     <input type="text" id="userinput1" class="form-control border-primary" placeholder="Full Name"
-                      formControlName="fullName" required>
+                      formControlName="fullName" required [ngbTypeahead]="search" [inputFormatter]="formatter">
                     <small class="form-text text-muted danger"
                       *ngIf="!donarContributionForm.get('fullName').valid && (donarContributionForm.get('fullName').dirty || donarContributionForm.get('fullName').touched)">Please
                       enter Full Name</small>

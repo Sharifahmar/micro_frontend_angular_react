@@ -4,6 +4,9 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { DonationTypeService } from "../../service/donationType.service";
 import * as alertFunctions from "../../shared/data/sweet-alerts";
 import { DonationAmountService } from "../../service/donation-amount.service";
+import { DonarService } from 'app/dashboard/service/donar.service';
+import { Observable } from 'rxjs';
+import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 
 @Component({
   selector: "app-donars-contribution",
@@ -15,13 +18,16 @@ export class DonarsContributionComponent implements OnInit {
   cancelButtonLabel: string = "";
   saveButtonLabel: string = "";
   donationTypes = [];
+  donarDetails = [];
+  fullNameArr = [];
   flag: Boolean = false;
   id: number;
   constructor(
     private router: Router,
     private donationTypeSvc: DonationTypeService,
     private donationAmountService: DonationAmountService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private donarSerivce: DonarService
   ) { }
 
   ngOnInit() {
@@ -43,6 +49,7 @@ export class DonarsContributionComponent implements OnInit {
 
     this.loadAllDonationType();
     this.loadDetails();
+    this.loadAllDonars();
   }
 
   cancelDoContribution(): void {
@@ -79,7 +86,7 @@ export class DonarsContributionComponent implements OnInit {
     } else {
       const request = {
         donars: {
-          phoneNumber: this.donarContributionForm.get("phoneNumber").value,
+          fullName: this.donarContributionForm.get("fullName").value,
         },
         donationAmount: this.donarContributionForm.get("donationAmount").value,
         receiptNumber: this.donarContributionForm.get("receiptNumber").value,
@@ -130,13 +137,14 @@ export class DonarsContributionComponent implements OnInit {
           break;
         case "Edit":
           this.donarContributionForm.get("phoneNumber").clearAsyncValidators();
-          this.donarContributionForm.controls["phoneNumber"].disabled;
+          this.donarContributionForm.get("phoneNumber").disable();
+          this.donarContributionForm.get("fullName").disable();
           this.cancelButtonLabel = "Cancel";
           this.saveButtonLabel = "Update";
           break;
 
         default:
-          this.donarContributionForm.removeControl("fullName");
+          // this.donarContributionForm.removeControl("fullName");
           this.donarContributionForm.removeControl("address");
           this.cancelButtonLabel = "Cancel";
           this.saveButtonLabel = "Save";
@@ -154,6 +162,28 @@ export class DonarsContributionComponent implements OnInit {
     });
   }
 
+  loadAllDonars(): void {
+    this.donarSerivce.getAllDonars().subscribe(
+      (response) => {
+        this.donarDetails = response._embedded.donarsEntities;
+        this.fullNameArr = this.donarDetails.map(item => item.fullName);
+      },
+
+      (error) => {
+        alertFunctions.custometypeError("Oops.!!", "Something went wrong..");
+      }
+    );
+  }
+
+  formatter = (result: string) => result;
+  // Default Search
+  search = (text$: Observable<string>) =>
+    text$.pipe(
+      debounceTime(200),
+      distinctUntilChanged(),
+      map(term => term === '' ? []
+        : this.fullNameArr.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10))
+    );
 
   get phoneNumber() {
     return this.donarContributionForm.get("phoneNumber");
