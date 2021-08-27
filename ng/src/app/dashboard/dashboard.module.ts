@@ -32,6 +32,7 @@ import { CustomAdapterDatepicker } from './helper/datePicker-formatter/CustomAda
 import { DonationTypeComponent } from './masters/donation-type/donation-type.component';
 import { StudentComponent } from './students/student.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { MonthlyDonorComponent } from './donars/monthly-donor/monthly-donor.component';
 
 
 @NgModule({
@@ -75,7 +76,8 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
         DonarsContributionComponent,
         DataTablesDonarcontributionComponent,
         DataTablesAcceptorDonationComponent,
-        AcceptorsDonationComponent
+        AcceptorsDonationComponent,
+        MonthlyDonorComponent
 
     ],
     providers: [],

@@ -17,6 +17,7 @@ import { DonarsContributionComponent } from './donars/donars-contribution/donars
 import { DataTablesDonarcontributionComponent } from './data-tables-donarcontribution/data-tables-donarcontribution.component';
 import { DataTablesAcceptorDonationComponent } from './data-tables-acceptordonation/data-tables-acceptordonation.component';
 import { AcceptorsDonationComponent } from './acceptors/acceptors-donation/acceptors-donation.component';
+import { MonthlyDonorComponent } from './donars/monthly-donor/monthly-donor.component';
 const routes: Routes = [
   {
     path: 'ng',
@@ -124,6 +125,11 @@ const routes: Routes = [
       {
         path: 'AddDonation',
         component: AcceptorsDonationComponent,
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'MonthlyDonorContributionRecordsGrid',
+        component: MonthlyDonorComponent,
         canActivate: [AuthGuard],
       },
     ]
