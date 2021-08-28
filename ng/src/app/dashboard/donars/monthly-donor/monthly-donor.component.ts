@@ -63,7 +63,7 @@ export class MonthlyDonorComponent implements OnInit {
   loadAllDonars(): void {
     this.loaderComponentService.emitChange(true);
     this.donarService.getAllDonars().subscribe(response => {
-      response._embedded.donarsEntities.length > 0 ? this.gridAddBtn = false : this.gridAddBtn = true;
+     // response._embedded.donarsEntities.length > 0 ? this.gridAddBtn = false : this.gridAddBtn = true;
       this.loaderComponentService.emitChange(false);
       this.temp = response._embedded.donarsEntities;
       this.fullNameArr = this.temp.map(item => item.fullName);

@@ -18,6 +18,7 @@ import { DataTablesDonarcontributionComponent } from './data-tables-donarcontrib
 import { DataTablesAcceptorDonationComponent } from './data-tables-acceptordonation/data-tables-acceptordonation.component';
 import { AcceptorsDonationComponent } from './acceptors/acceptors-donation/acceptors-donation.component';
 import { MonthlyDonorComponent } from './donars/monthly-donor/monthly-donor.component';
+import { MonthlyDonorContributionComponent } from './donars/monthly-donor/monthly-donor-contribution/monthly-donor-contribution.component';
 const routes: Routes = [
   {
     path: 'ng',
@@ -132,6 +133,11 @@ const routes: Routes = [
         component: MonthlyDonorComponent,
         canActivate: [AuthGuard],
       },
+      {
+        path: 'AddMonthlyDonorContribution',
+        component: MonthlyDonorContributionComponent,
+        canActivate: [AuthGuard],
+      }
     ]
   }
 ];

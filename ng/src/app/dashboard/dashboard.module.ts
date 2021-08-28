@@ -33,6 +33,7 @@ import { DonationTypeComponent } from './masters/donation-type/donation-type.com
 import { StudentComponent } from './students/student.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { MonthlyDonorComponent } from './donars/monthly-donor/monthly-donor.component';
+import { MonthlyDonorContributionComponent } from './donars/monthly-donor/monthly-donor-contribution/monthly-donor-contribution.component';
 
 
 @NgModule({
@@ -77,7 +78,8 @@ import { MonthlyDonorComponent } from './donars/monthly-donor/monthly-donor.comp
         DataTablesDonarcontributionComponent,
         DataTablesAcceptorDonationComponent,
         AcceptorsDonationComponent,
-        MonthlyDonorComponent
+        MonthlyDonorComponent,
+        MonthlyDonorContributionComponent
 
     ],
     providers: [],

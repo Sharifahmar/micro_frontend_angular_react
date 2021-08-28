@@ -67,7 +67,7 @@ export class UserProfileComponent implements OnInit {
 
   cancelUser(): void {
     this.userProfileForm.reset();
-    this.router.navigate(['/dashboard']);
+    this.router.navigate(['ng/dashboard']);
   }
 
   loadUserProfileDetails(): void {
