@@ -11,10 +11,10 @@ export const Full_ROUTES: Routes = [
     path: 'calendar',
     loadChildren: () => import('../../calendar/calendar.module').then(m => m.CalendarsModule)
   },
-  {
-    path: 'charts',
-    loadChildren: () => import('../../charts/charts.module').then(m => m.ChartsNg2Module)
-  },
+  // {
+  //   path: 'charts',
+  //   loadChildren: () => import('../../charts/charts.module').then(m => m.ChartsNg2Module)
+  // },
   {
     path: 'forms',
     loadChildren: () => import('../../forms/forms.module').then(m => m.FormModule)

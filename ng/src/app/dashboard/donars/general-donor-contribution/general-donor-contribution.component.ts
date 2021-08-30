@@ -5,11 +5,11 @@ import { DonationTypeService } from 'app/dashboard/service/donationType.service'
 import * as alertFunctions from '../../../shared/data/sweet-alerts';
 
 @Component({
-  selector: 'app-monthly-donor-contribution',
-  templateUrl: './monthly-donor-contribution.component.html',
-  styleUrls: ['./monthly-donor-contribution.component.scss']
+  selector: 'app-general-donor-contribution',
+  templateUrl: './general-donor-contribution.component.html',
+  styleUrls: ['./general-donor-contribution.component.scss']
 })
-export class MonthlyDonorContributionComponent implements OnInit {
+export class GeneralDonorContributionComponent implements OnInit {
   monthlyDonorContributionForm: FormGroup;
   donationTypes = [];
   constructor( private router: Router,private donationTypeSvc: DonationTypeService) { }
@@ -35,7 +35,7 @@ export class MonthlyDonorContributionComponent implements OnInit {
   }
 
   cancelMdContribution():void {
-    this.router.navigate(['ng/MonthlyDonorContributionRecordsGrid']);
+    this.router.navigate(['ng/GeneralDonorContributionRecordsGrid']);
   }
   
   loadAllDonationType(): void {

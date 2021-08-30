@@ -13,7 +13,7 @@
             <input type="text" id="mobileNumber" class="form-control" placeholder="Type FullName"
               formControlName="fullName" [ngbTypeahead]="search" [inputFormatter]="formatter">
           </div>
-          <div class="col-md-3 col-sm-3 col-xs-12">
+          <div class="col-md-2 col-sm-2 col-xs-12">
             <ng-select [items]="donationTypes" bindLabel="donationType" placeholder="Select Donation Type"
               formControlName="donationType">
             </ng-select>
@@ -40,12 +40,15 @@
               </div>
             </div>
           </div>
-          <div class="col-md-2 col-sm-3 col-xs-12">
-            <button type="submit" class="btn btn-raised btn-primary" [disabled]="rows.length > 0 ? false : true">
-              <i class="fa fa-search"></i>
+          <div class="col-md-3 col-sm-3 col-xs-12">
+            <button type="button" (click)="callAddRoute()" class="btn btn-raised btn-primary" *ngIf="rows.length > 0 ? false : true">
+              <i class="fa ft-file-plus"></i>
             </button>
-            <button (click)="generatePdf('print')" class="btn btn-raised btn-primary ml-2">
-              <i class="fa fa-print"></i>
+            <button type="button" (click)="filterReset()" class="btn btn-raised btn-primary ml-2">
+              <i class="fa fa-times"></i>
+            </button>
+            <button type="submit" class="btn btn-raised btn-primary ml-2" [disabled]="rows.length > 0 ? false : true">
+              <i class="fa fa-search"></i>
             </button>
             <button (click)="generatePdf('download')" class="btn btn-raised btn-primary ml-2">
               <i class="fa fa-download"></i>

@@ -5,18 +5,18 @@ import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 import swal from 'sweetalert2';
 import * as alertFunctions from '../../shared/data/sweet-alerts';
-import { DonarModel } from '../helper/model/donar-model';
-import { DonationAmountService } from '../service/donation-amount.service';
-import { DonationTypeService } from '../service/donationType.service';
-import { PdfgenerateService } from '../service/pdfgenerate.service';
-import { LoaderComponentService } from '../shared/behavior-subject-service/loader-component-interaction.service';
+import { DonarModel } from '../../helper/model/donar-model';
+import { DonationAmountService } from '../../service/donation-amount.service';
+import { DonationTypeService } from '../../service/donationType.service';
+import { PdfgenerateService } from '../../service/pdfgenerate.service';
+import { LoaderComponentService } from '../../shared/behavior-subject-service/loader-component-interaction.service';
 
 @Component({
-    selector: 'app-data-tables-donarcontribution',
-    templateUrl: './data-tables-donarcontribution.component.html',
-    styleUrls: ['./data-tables-donarcontribution.component.scss']
+    selector: 'app-data-tables-donarmonthlycontribution',
+    templateUrl: './data-tables-donors-monthlycontribution.html',
+    styleUrls: ['./data-tables-donors-monthlycontribution.scss']
 })
-export class DataTablesDonarcontributionComponent implements OnInit {
+export class DataTablesDonarsMonthlyContributionComponent implements OnInit {
     donarFormSearchCriteria: FormGroup;
     @ViewChild('editTmpl', { static: true }) editTmpl: TemplateRef<any>;
     @ViewChild('hdrTpl', { static: true }) hdrTpl: TemplateRef<any>;
@@ -102,15 +102,15 @@ export class DataTablesDonarcontributionComponent implements OnInit {
             });
     }
     addView(): void {
-        this.router.navigate(['ng/AddContribution']);
+        this.router.navigate(['ng/AddMonthlyContribution']);
     }
 
     editView(data: any): void {
-        this.router.navigate(['ng/Contribution', data.donationAmountId, 'Edit']);
+        this.router.navigate(['ng/MonthlyContribution', data.donationAmountId, 'Edit']);
     }
 
     view(data: any): void {
-        this.router.navigate(['ng/Contribution', data.donationAmountId, 'View']);
+        this.router.navigate(['ng/MonthlyContribution', data.donationAmountId, 'View']);
     }
 
     deleteView(data: any): void {

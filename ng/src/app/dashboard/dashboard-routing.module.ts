@@ -13,12 +13,13 @@ import { DonationTypeComponent } from './masters/donation-type/donation-type.com
 import { AuthGuard } from './helper/guards/auth-guard';
 import { DTFilterDonationTypeComponent } from './data-tables-donationType/dt-filter-donationType.component';
 import { StudentComponent } from './students/student.component';
-import { DonarsContributionComponent } from './donars/donars-contribution/donars-contribution.component';
-import { DataTablesDonarcontributionComponent } from './data-tables-donarcontribution/data-tables-donarcontribution.component';
+
 import { DataTablesAcceptorDonationComponent } from './data-tables-acceptordonation/data-tables-acceptordonation.component';
 import { AcceptorsDonationComponent } from './acceptors/acceptors-donation/acceptors-donation.component';
-import { MonthlyDonorComponent } from './donars/monthly-donor/monthly-donor.component';
-import { MonthlyDonorContributionComponent } from './donars/monthly-donor/monthly-donor-contribution/monthly-donor-contribution.component';
+import { DataTablesDonarsMonthlyContributionComponent } from './donars/data-tables-donors-monthlycontribution/data-tables-donors-monthlycontribution';
+import { DonarsMonthlyContributionComponent } from './donars/donors-monthly-contribution/donors-monthly-contribution.component';
+import { GeneralDonorComponent } from './donars/data-tables-general-donor/data-tables-generaldonor.component';
+import { GeneralDonorContributionComponent } from './donars/general-donor-contribution/general-donor-contribution.component';
 const routes: Routes = [
   {
     path: 'ng',
@@ -99,18 +100,18 @@ const routes: Routes = [
         canActivate: [AuthGuard],
       },
       {
-        path: 'AddContribution',
-        component: DonarsContributionComponent,
+        path: 'AddMonthlyContribution',
+        component: DonarsMonthlyContributionComponent,
         canActivate: [AuthGuard],
       },
       {
-        path: 'Contribution/:id/:data',
-        component: DonarsContributionComponent,
+        path: 'MonthlyContribution/:id/:data',
+        component: DonarsMonthlyContributionComponent,
         canActivate: [AuthGuard],
       },
       {
-        path: 'DonarContributionRecordsGrid',
-        component: DataTablesDonarcontributionComponent,
+        path: 'MonthlyDonorContributionRecordsGrid',
+        component: DataTablesDonarsMonthlyContributionComponent,
         canActivate: [AuthGuard],
       },
       {
@@ -129,13 +130,13 @@ const routes: Routes = [
         canActivate: [AuthGuard],
       },
       {
-        path: 'MonthlyDonorContributionRecordsGrid',
-        component: MonthlyDonorComponent,
+        path: 'GeneralDonorContributionRecordsGrid',
+        component: GeneralDonorComponent,
         canActivate: [AuthGuard],
       },
       {
-        path: 'AddMonthlyDonorContribution',
-        component: MonthlyDonorContributionComponent,
+        path: 'AddDonorContribution',
+        component: GeneralDonorContributionComponent,
         canActivate: [AuthGuard],
       }
     ]

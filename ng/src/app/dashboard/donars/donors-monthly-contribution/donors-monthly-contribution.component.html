@@ -5,7 +5,7 @@
     <div class="col-md-7">
       <div class="card">
         <div class="card-header pb-2">
-          <h4 class="card-title text-center" id="hidden-label-colored-controls">Donar Contribution Details</h4>
+          <h4 class="card-title text-center" id="hidden-label-colored-controls">Donor Monthly Contribution</h4>
 
         </div>
         <div class="card-content">
@@ -33,18 +33,15 @@
                 </div>
                 <div class="row">
                   <div class="form-group col-md-6 mb-2">
-                    <label class="sr-only" for="userinput2">Mobile Number</label>
-                    <input type="text" id="userinput2" class="form-control border-primary" placeholder="Mobile Number"
-                      formControlName="phoneNumber" required>
+                    <select id="projectinput7" class="form-control border-primary" formControlName="donationTypeId"
+                      required>
+                      <option value="" disabled selected>Donation Type</option>
+                      <option *ngFor="let value of donationTypes;" [ngValue]="value.donationTypeId">
+                        {{value.donationType}}</option>
+                    </select>
                     <small class="form-text text-muted danger"
-                      *ngIf="phoneNumber.invalid && (donarContributionForm.get('phoneNumber').dirty || donarContributionForm.get('phoneNumber').touched)">
-                      <div *ngIf="phoneNumber.errors?.required">
-                        Please enter Mobile Number.
-                      </div>
-                      <div *ngIf="phoneNumber.errors?.pattern">
-                        Please enter a valid Mobile Number.
-                      </div>
-                    </small>
+                      *ngIf="!donarContributionForm.get('donationTypeId').valid && (donarContributionForm.get('donationTypeId').dirty || donarContributionForm.get('donationTypeId').touched)">Please
+                      select Donation Type</small>
                   </div>
                   <div class="form-group col-md-6 mb-2">
                     <label class="sr-only" for="userinput1">Amount</label>
@@ -61,27 +58,20 @@
                     </small>
                   </div>
                 </div>
-                <div class="row">
+                <div class="row" *ngIf="viewForm">
                   <div class="form-group col-md-6 mb-2">
-                    <select id="projectinput7" class="form-control border-primary" formControlName="donationTypeId"
-                      required>
-                      <option value="" disabled selected>Donation Type</option>
-                      <option *ngFor="let value of donationTypes;" [ngValue]="value.donationTypeId">
-                        {{value.donationType}}</option>
-                    </select>
+                    <label class="sr-only" for="userinput2">Mobile Number</label>
+                    <input type="text" id="userinput2" class="form-control border-primary" placeholder="Mobile Number"
+                      formControlName="phoneNumber" required>
                     <small class="form-text text-muted danger"
-                      *ngIf="!donarContributionForm.get('donationTypeId').valid && (donarContributionForm.get('donationTypeId').dirty || donarContributionForm.get('donationTypeId').touched)">Please
-                      select Donation Type</small>
-                  </div>
-                </div>
-                <div class="row" *ngIf="flag">
-                  <div class="form-group col-12 mb-2">
-                    <label class="sr-only" for="userinput8">Address</label>
-                    <textarea id="userinput8" rows="5" class="form-control border-primary" placeholder="Address"
-                      formControlName="address" required></textarea>
-                    <small class="form-text text-muted danger"
-                      *ngIf="!donarContributionForm.get('address').valid && (donarContributionForm.get('address').dirty || donarContributionForm.get('address').touched)">Please
-                      enter your Address</small>
+                      *ngIf="phoneNumber.invalid && (donarContributionForm.get('phoneNumber').dirty || donarContributionForm.get('phoneNumber').touched)">
+                      <div *ngIf="phoneNumber.errors?.required">
+                        Please enter Mobile Number.
+                      </div>
+                      <div *ngIf="phoneNumber.errors?.pattern">
+                        Please enter a valid Mobile Number.
+                      </div>
+                    </small>
                   </div>
                 </div>
               </div>

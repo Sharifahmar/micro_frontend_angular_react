@@ -1,7 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgbDateAdapter, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { ChartistModule } from 'ng-chartist';
@@ -15,11 +15,10 @@ import { Dashboard2Component } from "./dashboard2/dashboard2.component";
 import { DTFilterAcceptorComponent } from './data-tables-acceptor/dt-filter-acceptor.component';
 import { DataTablesAcceptorDonationComponent } from './data-tables-acceptordonation/data-tables-acceptordonation.component';
 import { DTFilterComponent } from './data-tables-donar/dt-filter.component';
-import { DataTablesDonarcontributionComponent } from './data-tables-donarcontribution/data-tables-donarcontribution.component';
+import { DataTablesDonarsMonthlyContributionComponent } from '../dashboard/donars/data-tables-donors-monthlycontribution/data-tables-donors-monthlycontribution';
 import { DTFilterDonationTypeComponent } from './data-tables-donationType/dt-filter-donationType.component';
 import { DTFilterStudentComponent } from './data-tables-students/dt-filter-student.component';
 import { DonarComponent } from './donars/donar.component';
-import { DonarsContributionComponent } from './donars/donars-contribution/donars-contribution.component';
 import { checkAadharNumberValidatorDirective } from './helper/custom-validator/aadharNumber-async-validator';
 import { checkDonationTypeDirectiveDonar } from './helper/custom-validator/donationType-async-validator';
 import { checkEmailValidatorDirective } from './helper/custom-validator/email-async-validator';
@@ -32,8 +31,10 @@ import { CustomAdapterDatepicker } from './helper/datePicker-formatter/CustomAda
 import { DonationTypeComponent } from './masters/donation-type/donation-type.component';
 import { StudentComponent } from './students/student.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
-import { MonthlyDonorComponent } from './donars/monthly-donor/monthly-donor.component';
-import { MonthlyDonorContributionComponent } from './donars/monthly-donor/monthly-donor-contribution/monthly-donor-contribution.component';
+
+import { DonarsMonthlyContributionComponent } from "./donars/donors-monthly-contribution/donors-monthly-contribution.component";
+import { GeneralDonorContributionComponent } from "./donars/general-donor-contribution/general-donor-contribution.component";
+import { GeneralDonorComponent } from "./donars/data-tables-general-donor/data-tables-generaldonor.component";
 
 
 @NgModule({
@@ -74,12 +75,12 @@ import { MonthlyDonorContributionComponent } from './donars/monthly-donor/monthl
         checkEmailValidatorDirectiveAcceptor,
         checkPhoneNumberValidatorDirectiveAcceptor,
         checkAadharNumberValidatorDirective,
-        DonarsContributionComponent,
-        DataTablesDonarcontributionComponent,
+        DonarsMonthlyContributionComponent,
+        DataTablesDonarsMonthlyContributionComponent,
         DataTablesAcceptorDonationComponent,
         AcceptorsDonationComponent,
-        MonthlyDonorComponent,
-        MonthlyDonorContributionComponent
+        GeneralDonorComponent,
+        GeneralDonorContributionComponent
 
     ],
     providers: [],

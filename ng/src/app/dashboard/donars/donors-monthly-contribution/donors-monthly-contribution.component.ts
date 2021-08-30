@@ -9,19 +9,21 @@ import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 
 @Component({
-  selector: "app-donars-contribution",
-  templateUrl: "./donars-contribution.component.html",
-  styleUrls: ["./donars-contribution.component.scss"],
+  selector: "app-donors-monthlycontribution",
+  templateUrl: "./donors-monthly-contribution.component.html",
+  styleUrls: ["./donors-monthly-contribution.component.scss"],
 })
-export class DonarsContributionComponent implements OnInit {
+export class DonarsMonthlyContributionComponent implements OnInit {
   donarContributionForm: FormGroup;
   cancelButtonLabel: string = "";
   saveButtonLabel: string = "";
   donationTypes = [];
   donarDetails = [];
   fullNameArr = [];
-  flag: Boolean = false;
+  flag: boolean = false;
+  viewForm: boolean = false;
   id: number;
+
   constructor(
     private router: Router,
     private donationTypeSvc: DonationTypeService,
@@ -54,7 +56,7 @@ export class DonarsContributionComponent implements OnInit {
 
   cancelDoContribution(): void {
     this.donarContributionForm.reset();
-    this.router.navigate(["ng/DonarContributionRecordsGrid"]);
+    this.router.navigate(["ng/MonthlyDonorContributionRecordsGrid"]);
   }
 
   registerDonationAmount(): void {
@@ -134,18 +136,17 @@ export class DonarsContributionComponent implements OnInit {
         case "View":
           this.cancelButtonLabel = "Back";
           this.donarContributionForm.disable();
+          this.viewForm = true;
           break;
         case "Edit":
-          this.donarContributionForm.get("phoneNumber").clearAsyncValidators();
           this.donarContributionForm.get("phoneNumber").disable();
           this.donarContributionForm.get("fullName").disable();
           this.cancelButtonLabel = "Cancel";
           this.saveButtonLabel = "Update";
+          this.viewForm = true;
           break;
 
         default:
-          // this.donarContributionForm.removeControl("fullName");
-          this.donarContributionForm.removeControl("address");
           this.cancelButtonLabel = "Cancel";
           this.saveButtonLabel = "Save";
           break;

@@ -34,7 +34,7 @@ const SidebarComponent = () => {
                             </a>
                             <ul className="menu-content">
                                 <li>
-                                    <Link to="/ng/DonarContributionRecordsGrid"><span className="menu-title">General Donors</span></Link>
+                                    <Link to="/ng/GeneralDonorContributionRecordsGrid"><span className="menu-title">General Donors</span></Link>
                                 </li>
                                 <li>
                                     <Link to="/ng/MonthlyDonorContributionRecordsGrid"><span className="menu-title">Monthly Donors</span></Link>

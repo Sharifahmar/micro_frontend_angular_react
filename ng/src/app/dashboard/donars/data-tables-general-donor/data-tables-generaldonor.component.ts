@@ -1,5 +1,6 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { DonarService } from 'app/dashboard/service/donar.service';
 import { DonationTypeService } from 'app/dashboard/service/donationType.service';
 import { LoaderComponentService } from 'app/dashboard/shared/behavior-subject-service/loader-component-interaction.service';
@@ -8,11 +9,11 @@ import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 import * as alertFunctions from '../../shared/data/sweet-alerts';
 
 @Component({
-  selector: 'app-monthly-donor',
-  templateUrl: './monthly-donor.component.html',
-  styleUrls: ['./monthly-donor.component.scss']
+  selector: 'app-general-donor',
+  templateUrl: './data-tables-generaldonor.component.html',
+  styleUrls: ['./data-tables-generaldonor.component.scss']
 })
-export class MonthlyDonorComponent implements OnInit {
+export class GeneralDonorComponent implements OnInit {
 
   rows = [];
   columns = [];
@@ -25,7 +26,8 @@ export class MonthlyDonorComponent implements OnInit {
   fullNameArr = [];
   constructor(private donationTypeSvc: DonationTypeService,
     private loaderComponentService: LoaderComponentService,
-    private donarService: DonarService) { }
+    private donarService: DonarService,
+    private router: Router) { }
 
   ngOnInit() {
 
@@ -63,7 +65,7 @@ export class MonthlyDonorComponent implements OnInit {
   loadAllDonars(): void {
     this.loaderComponentService.emitChange(true);
     this.donarService.getAllDonars().subscribe(response => {
-     // response._embedded.donarsEntities.length > 0 ? this.gridAddBtn = false : this.gridAddBtn = true;
+      // response._embedded.donarsEntities.length > 0 ? this.gridAddBtn = false : this.gridAddBtn = true;
       this.loaderComponentService.emitChange(false);
       this.temp = response._embedded.donarsEntities;
       this.fullNameArr = this.temp.map(item => item.fullName);
@@ -84,6 +86,10 @@ export class MonthlyDonorComponent implements OnInit {
 
   filterReset(): void {
     this.monthlyDonorGridSearchCriteria.reset();
+  }
+
+  callAddRoute(): void {
+    this.router.navigate(["ng/AddDonorContribution"]);
   }
 
 }

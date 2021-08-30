@@ -15,7 +15,7 @@ export const ROUTES: RouteInfo[] = [
     {
         path: '', title: 'Donors Contribution', icon: 'ft-grid', class: 'has-sub', badge: '', badgeClass: '', isExternalLink: false, submenu: [
 
-            { path: '/ng/DonarContributionRecordsGrid', title: 'General Donors', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+            { path: '/ng/GeneralDonorContributionRecordsGrid', title: 'General Donors', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
             { path: '/ng/MonthlyDonorContributionRecordsGrid', title: 'Monthly Donors', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
 
         ]
