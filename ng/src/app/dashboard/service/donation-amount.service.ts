@@ -15,22 +15,23 @@ export class DonationAmountService {
   private getDonationTypeContributionDetailsByIdApi: string = 'http://localhost:8081/donarContributionDetails/'
   private donationContributionDetailsDeleteByIdApi: string = 'http://localhost:8081/deleteDonarContributionDetails/'
   private donationContributionDetailsUpdateByIdApi: string = 'http://localhost:8081/updateDonarContributionDetails/'
+  private monthlyDonationDetailsApi: string = 'http://localhost:8081/donarContributionDetailsReport'
   constructor(private http: HttpClient) { }
 
   registerDonationAmount(payload: any): Observable<ApiResponseModel> {
     return this.http.post<ApiResponseModel>(this.donationAmountApi, payload);
   }
 
-  getAllDonarsContributionDetails():Observable<any>{
+  getAllDonarsContributionDetails(): Observable<any> {
     return this.http.get<any>(this.getAllDonationTypeContributionApi);
   }
 
-  getAllDonarsContributionDetailsJoin(payload:any): Observable<any> {
-    return this.http.post<any>(this.getAllDonationTypeContributionJoinApi,payload);
+  getAllDonarsContributionDetailsJoin(payload: any): Observable<any> {
+    return this.http.post<any>(this.getAllDonationTypeContributionJoinApi, payload);
   }
 
-  getDonarsContributionDetailsById(payload:any): Observable<any> {
-    return this.http.post<any>(this.getDonationTypeContributionDetailsByIdApi+payload,'');
+  getDonarsContributionDetailsById(payload: any): Observable<any> {
+    return this.http.post<any>(this.getDonationTypeContributionDetailsByIdApi + payload, '');
   }
 
   deleteDonationAmount(payload: any): Observable<ApiResponseModel> {
@@ -39,6 +40,10 @@ export class DonationAmountService {
 
   updateDonationAmount(payload: any): Observable<ApiResponseModel> {
     return this.http.post<ApiResponseModel>(this.donationContributionDetailsUpdateByIdApi, payload);
+  }
+
+  generateReceiptPdfApi(payload: any): Observable<ApiResponseModel> {
+    return this.http.post<ApiResponseModel>(this.monthlyDonationDetailsApi, payload);
   }
 
 }

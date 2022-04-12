@@ -228,4 +228,21 @@ export class DataTablesDonarsMonthlyContributionComponent implements OnInit {
         this.pdfgenerateService.setDownloadParameter('donarsContributionList.pdf');
         this.pdfgenerateService.generatePdfSwitch(action);
     }
+
+    generateReceiptPdf(): void {
+        this.donationAmountService.generateReceiptPdfApi({ status: true }).subscribe(response => {
+            if (response.status === true) {
+                swal('Congratulations.!!', 'Receipt has been generated successfully!!');
+                this.loaderComponentService.emitChange(false);
+            }
+        },
+            (error: any) => {
+                swal('Oops.!!', 'Something went wrong..!!');
+                this.loaderComponentService.emitChange(false);
+            })
+    }
+
+    filterReset(): void {
+        this.donarFormSearchCriteria.reset();
+    }
 }

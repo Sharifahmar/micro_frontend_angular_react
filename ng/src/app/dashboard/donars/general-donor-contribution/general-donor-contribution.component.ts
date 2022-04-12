@@ -12,7 +12,8 @@ import * as alertFunctions from '../../../shared/data/sweet-alerts';
 export class GeneralDonorContributionComponent implements OnInit {
   monthlyDonorContributionForm: FormGroup;
   donationTypes = [];
-  constructor( private router: Router,private donationTypeSvc: DonationTypeService) { }
+  flag: boolean = false;
+  constructor(private router: Router, private donationTypeSvc: DonationTypeService) { }
 
   ngOnInit() {
     this.monthlyDonorContributionForm = new FormGroup({
@@ -27,17 +28,16 @@ export class GeneralDonorContributionComponent implements OnInit {
         Validators.pattern("[0-9]+(.[0-9][0-9]?)?"),
       ]),
       donationTypeId: new FormControl("", [Validators.required]),
-      address: new FormControl("", [Validators.required]),
-      status: new FormControl(true),
+      status: new FormControl(true)
     });
 
     this.loadAllDonationType();
   }
 
-  cancelMdContribution():void {
+  cancelMdContribution(): void {
     this.router.navigate(['ng/GeneralDonorContributionRecordsGrid']);
   }
-  
+
   loadAllDonationType(): void {
     this.donationTypeSvc.getAllDonartionType().subscribe(response => {
       this.donationTypes = response._embedded.donationTypeEntities;

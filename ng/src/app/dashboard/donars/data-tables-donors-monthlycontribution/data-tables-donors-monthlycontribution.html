@@ -50,6 +50,9 @@
             <button type="submit" class="btn btn-raised btn-primary ml-2" [disabled]="rows.length > 0 ? false : true">
               <i class="fa fa-search"></i>
             </button>
+            <button (click)="generateReceiptPdf()" class="btn btn-raised btn-primary ml-2">
+              <i class="fa fa-print"></i>
+            </button>
             <button (click)="generatePdf('download')" class="btn btn-raised btn-primary ml-2">
               <i class="fa fa-download"></i>
             </button>
