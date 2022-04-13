@@ -45,7 +45,6 @@ export class DonarsMonthlyContributionComponent implements OnInit {
         Validators.pattern("[0-9]+(.[0-9][0-9]?)?"),
       ]),
       donationTypeId: new FormControl("", [Validators.required]),
-      address: new FormControl("", [Validators.required]),
       status: new FormControl(true),
     });
 
@@ -147,6 +146,7 @@ export class DonarsMonthlyContributionComponent implements OnInit {
           break;
 
         default:
+          this.donarContributionForm.removeControl("phoneNumber");
           this.cancelButtonLabel = "Cancel";
           this.saveButtonLabel = "Save";
           break;

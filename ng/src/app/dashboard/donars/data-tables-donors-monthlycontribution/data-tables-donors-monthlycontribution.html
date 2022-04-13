@@ -41,20 +41,20 @@
             </div>
           </div>
           <div class="col-md-3 col-sm-3 col-xs-12">
-            <button type="button" (click)="callAddRoute()" class="btn btn-raised btn-primary" *ngIf="rows.length > 0 ? false : true">
+            <button title="Add Details" type="button" (click)="callAddRoute()" class="btn btn-raised btn-primary" *ngIf="rows.length > 0 ? false : true">
               <i class="fa ft-file-plus"></i>
             </button>
-            <button type="button" (click)="filterReset()" class="btn btn-raised btn-primary ml-2">
+            <button title="Clear Search" type="button" (click)="filterReset()" class="btn btn-raised btn-primary ml-2">
               <i class="fa fa-times"></i>
             </button>
-            <button type="submit" class="btn btn-raised btn-primary ml-2" [disabled]="rows.length > 0 ? false : true">
+            <button title="Search Result" type="submit" class="btn btn-raised btn-primary ml-2" [disabled]="rows.length > 0 ? false : true">
               <i class="fa fa-search"></i>
             </button>
-            <button (click)="generateReceiptPdf()" class="btn btn-raised btn-primary ml-2">
-              <i class="fa fa-print"></i>
-            </button>
-            <button (click)="generatePdf('download')" class="btn btn-raised btn-primary ml-2">
+            <button title="Bulk Receipt" (click)="generateReceiptPdf()" class="btn btn-raised btn-primary ml-2">
               <i class="fa fa-download"></i>
+            </button>
+            <button title="Print Records" (click)="generatePdf('print')" class="btn btn-raised btn-primary ml-2">
+              <i class="fa fa-print"></i>
             </button>
           </div>
         </div>

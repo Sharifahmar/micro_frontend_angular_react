@@ -26,7 +26,7 @@ export class RegisterPageComponent implements OnInit {
             'phoneNumber': new FormControl("", [Validators.required, Validators.pattern("^[0-9]{10}$")], [checkPhoneNumberValidator(this.loginAuthService)]),
             'password': new FormControl("", [Validators.required, Validators.minLength(4)]),
             //'confirmpassword': new FormControl("", [Validators.required]),
-        }, { updateOn: 'blur' });
+        });
 
         sessionStorage.clear();
 
