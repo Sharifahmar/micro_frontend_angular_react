@@ -25,10 +25,10 @@
                   <div class="form-group col-md-6 mb-2">
                     <label class="sr-only" for="userinput1">Full Name</label>
                     <input type="text" id="userinput1" class="form-control border-primary" placeholder="Full Name"
-                      formControlName="fullName" required [ngbTypeahead]="search" [inputFormatter]="formatter">
+                      formControlName="fullName" required [ngbTypeahead]="search" [inputFormatter]="formatter" (change)="getSelectedItem($event.target.value)">
                     <small class="form-text text-muted danger"
                       *ngIf="!donarContributionForm.get('fullName').valid && (donarContributionForm.get('fullName').dirty || donarContributionForm.get('fullName').touched)">Please
-                      enter Full Name</small>
+                      select Full Name</small>
                   </div>
                 </div>
                 <div class="row">
@@ -79,7 +79,7 @@
                 <button type="button" class="btn btn-raised btn-warning mr-1" (click)=cancelDoContribution();>
                   <i class="ft-x"></i> {{cancelButtonLabel}}
                 </button>
-                <button type="submit" class="btn btn-raised btn-primary" [disabled]="donarContributionForm.invalid"
+                <button type="submit" class="btn btn-raised btn-primary" [disabled]="!(donarContributionForm.valid && donarContributionForm.dirty)"
                   *ngIf="!flag">
                   <i class="fa fa-check-square-o"></i> {{saveButtonLabel}}
                 </button>

@@ -23,7 +23,7 @@ export class DonarsMonthlyContributionComponent implements OnInit {
   flag: boolean = false;
   viewForm: boolean = false;
   id: number;
-
+  disableSubmitBtn : boolean = false;
   constructor(
     private router: Router,
     private donationTypeSvc: DonationTypeService,
@@ -189,4 +189,11 @@ export class DonarsMonthlyContributionComponent implements OnInit {
   get phoneNumber() {
     return this.donarContributionForm.get("phoneNumber");
   }
+
+  getSelectedItem(value:string):void{
+    if(!this.fullNameArr.includes(value)){
+      this.donarContributionForm.get("fullName").setErrors({incorrect:true});
+    }
+  }
+
 }
