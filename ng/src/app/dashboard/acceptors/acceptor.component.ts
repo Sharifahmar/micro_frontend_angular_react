@@ -38,7 +38,7 @@ export class AcceptorComponent implements OnInit {
       'state': new FormControl(null, [Validators.required]),
       'country': new FormControl(null, [Validators.required]),
       'status': new FormControl(true)
-    }, { updateOn: 'blur' });
+    });
 
     this.loadDetails();
   }
