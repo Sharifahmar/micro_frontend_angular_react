@@ -12,6 +12,21 @@
             <form class="form" [formGroup]="acceptorForm" (ngSubmit)="registerAcceptor()" novalidate>
               <div class="form-body">
                 <h4 class="form-section"><i class="ft-info"></i> Acceptor Information</h4>
+                <div class="row" *ngIf="imgUpload">
+                  <div class="col-md-6 offset-md-4 mb-2">
+                    <div class="card removeHeight">
+                      <div class="card-content">
+                        <div class="card-img custom-card">
+                          <img class="img-fluid"
+                            [src]="profileUrl !== '' && profileUrl !== null ? profileUrl : 'assets/img/default/default.png'"
+                            alt="Acceptor Profile Image">
+                          <a class="btn btn-floating halfway-fab bg-warning custom-right" (click)="open(content)"
+                            *ngIf="popupBtn"><i class="ft-plus"></i></a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
                 <div class="row">
                   <div class="form-group col-md-6 mb-2">
                     <label class="sr-only" for="userinput1">Full Name</label>
@@ -110,4 +125,30 @@
   </div>
 
 </section>
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Upload Photo</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="row">
+      <div class="col-md-12">
+        <input type="file" (change)="onSelectFile($event)">
+      </div>
+      <div class="col-md-12">
+        <img class="img-fluid" [src]="url">
+      </div>
+      <br />
+      <div class="col-md-12" *ngIf="progress">
+        <ngb-progressbar [value]="progress" type="success" [striped]="true" [animated]="true"></ngb-progressbar>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-raised btn-primary" (click)="uploadImage()"
+      [disabled]="!uploadImageBtn">Upload</button>
+  </div>
+</ng-template>
 <!-- // Hidden label form layout section end -->

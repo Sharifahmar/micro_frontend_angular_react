@@ -23,7 +23,7 @@ export class AcceptorService {
   private deleteAcceptorApi: string = 'http://localhost:8081/acceptor/delete';
   private acceptorSearchCriteriaApi: string = 'http://localhost:8081/acceptor/acceptorSearchCriteria';
   private deleteAcceptorDonationApi: string = 'http://localhost:8081/deleteAcceptorDonationDetails';
-
+  private imageUploadApi: string = 'http://localhost:8081/imageUpload/acceptor/';
 
   constructor(private http: HttpClient) { }
 
@@ -64,6 +64,13 @@ export class AcceptorService {
 
   acceptorSearchCriteria(payload: AcceptorModel): Observable<any> {
     return this.http.post<any>(this.acceptorSearchCriteriaApi, payload);
+  }
+
+  uploadImage(formData: FormData, id: number): Observable<any> {
+    return this.http.post<any>(this.imageUploadApi + id, formData, {
+      reportProgress: true,
+      observe: 'events'
+    });
   }
 
 }
