@@ -175,7 +175,7 @@ export class AcceptorComponent implements OnInit {
     setTimeout(() => {
       this.progress = 0;
       if (this.responseStatus === 200) {
-        alertFunctions.customtypeSuccess("Congratulations.!!", "Donor Image Upload Successfully..!!");
+        alertFunctions.customtypeSuccess("Congratulations.!!", "Acceptor Image Upload Successfully..!!");
         this.modalService.dismissAll();
       }
     }, 1500);

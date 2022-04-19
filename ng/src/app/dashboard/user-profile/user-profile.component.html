@@ -16,7 +16,7 @@
                     <div class="card removeHeight">
                       <div class="card-content">
                         <div class="card-img custom-card">
-                          <img class="img-fluid" [src]="profileUrl" alt="Card image cap">
+                          <img class="img-fluid" [src]="profileUrl !== null ? profileUrl : 'http://localhost:8081/images/default.png'" alt="Card image cap">
                           <a class="btn btn-floating halfway-fab bg-warning custom-right" (click)="open(content)"><i
                               class="ft-plus"></i></a>
                         </div>

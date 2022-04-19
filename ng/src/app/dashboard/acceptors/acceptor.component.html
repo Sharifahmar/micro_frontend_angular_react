@@ -18,7 +18,7 @@
                       <div class="card-content">
                         <div class="card-img custom-card">
                           <img class="img-fluid"
-                            [src]="profileUrl !== '' && profileUrl !== null ? profileUrl : 'assets/img/default/default.png'"
+                            [src]="profileUrl !== null ? profileUrl : 'http://localhost:8081/images/default.png'"
                             alt="Acceptor Profile Image">
                           <a class="btn btn-floating halfway-fab bg-warning custom-right" (click)="open(content)"
                             *ngIf="popupBtn"><i class="ft-plus"></i></a>
