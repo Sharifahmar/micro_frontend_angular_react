@@ -59,7 +59,7 @@
                   <div class="form-group col-md-6 mb-2">
                     <label class="sr-only" for="userinput5">City</label>
                     <select id="userinput5" class="form-control border-primary" formControlName="city" required>
-                      <option value="" selected="" disabled="">City</option>
+                      <option [ngValue]="null" disabled>City</option>
                       <option *ngFor="let city of cities" [ngValue]="city">{{city}}</option>
                     </select>
                     <small class="form-text text-muted danger"
@@ -69,7 +69,7 @@
                   <div class="form-group col-md-6 mb-2">
                     <label class="sr-only" for="userinput6">State</label>
                     <select id="userinput6" class="form-control border-primary" formControlName="state" required>
-                      <option value="" selected="" disabled="">State</option>
+                      <option [ngValue]="null" disabled>State</option>
                       <option *ngFor="let state of states" [ngValue]="state">{{state}}</option>
                     </select>
                     <small class="form-text text-muted danger"
@@ -81,7 +81,7 @@
                   <div class="form-group col-md-6 mb-2">
                     <label class="sr-only" for="userinput7">Country</label>
                     <select id="userinput7" class="form-control border-primary" formControlName="country" required>
-                      <option value="" selected="" disabled="">Country</option>
+                      <option [ngValue]="null" disabled>Country</option>
                       <option *ngFor="let value of country" [ngValue]="value">{{value}}</option>
                     </select>
                     <small class="form-text text-muted danger"
