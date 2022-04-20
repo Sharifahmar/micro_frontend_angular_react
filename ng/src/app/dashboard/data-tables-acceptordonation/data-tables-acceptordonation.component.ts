@@ -1,6 +1,8 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 import swal from 'sweetalert2';
 import * as alertFunctions from '../../shared/data/sweet-alerts';
 import { AcceptorModel } from '../helper/model/acceptor-model';
@@ -25,14 +27,13 @@ export class DataTablesAcceptorDonationComponent implements OnInit {
     acceptor: AcceptorModel = new AcceptorModel();
     donationTypes = [];
     amtCount: number;
-
+    fullNameArr = [];
     constructor(private accService: AcceptorService, private router: Router, private loaderComponentService: LoaderComponentService, private acceptorAmountService: AcceptorAmountService, private donationTypeSvc: DonationTypeService, private pdfgenerateService: PdfgenerateService) { }
 
     ngOnInit() {
 
         this.acceptorFormSearchCriteria = new FormGroup({
             'fullName': new FormControl(),
-            'phoneNumber': new FormControl(),
             'donationType': new FormControl(),
             'fromDate': new FormControl(),
             'toDate': new FormControl()
@@ -67,7 +68,7 @@ export class DataTablesAcceptorDonationComponent implements OnInit {
 
             "status": true,
             "fromDate": fromDate,
-            "phoneNumber": this.acceptorFormSearchCriteria.get('phoneNumber').value,
+            "fullName": this.acceptorFormSearchCriteria.get('fullName').value,
             "toDate": toDate,
             "donationTypeId": donationTypeObj
 
@@ -78,6 +79,7 @@ export class DataTablesAcceptorDonationComponent implements OnInit {
                 this.loaderComponentService.emitChange(false);
                 response.status === true ? this.rows = response.data : alertFunctions.custometypeError("Oops.!!", "Something went wrong..");
                 this.amtCount = this.rows.map(x => parseInt(x.acceptorAmount)).reduce((a, b) => a + b, 0);
+                this.fullNameArr = this.rows.map(item => item.fullName);
             },
             error => {
                 this.loaderComponentService.emitChange(false);
@@ -94,6 +96,7 @@ export class DataTablesAcceptorDonationComponent implements OnInit {
     loadAllDonationType(): void {
         this.donationTypeSvc.getAllDonartionType().subscribe(response => {
             this.donationTypes = response._embedded.donationTypeEntities;
+            this.donationTypes.sort((a, b) => (a.donationType.toLowerCase() > b.donationType.toLowerCase() ? 1 : -1));
         },
 
             error => {
@@ -216,5 +219,19 @@ export class DataTablesAcceptorDonationComponent implements OnInit {
         this.pdfgenerateService.setDownloadParameter('acceptorDonationList.pdf');
         this.pdfgenerateService.generatePdfSwitch(action);
     }
+
+    filterReset():void{
+        this.acceptorFormSearchCriteria.reset();
+    }
+
+    formatter = (result: string) => result;
+    // Default Search
+    search = (text$: Observable<string>) =>
+        text$.pipe(
+            debounceTime(200),
+            distinctUntilChanged(),
+            map(term => term === '' ? []
+                : this.fullNameArr.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10))
+        );
 
 }

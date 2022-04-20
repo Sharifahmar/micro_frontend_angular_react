@@ -10,16 +10,16 @@
       <form class="form" [formGroup]="acceptorFormSearchCriteria" (ngSubmit)="doSearch()" novalidate>
         <div class="row">
           <div class="col-md-3 col-sm-3 col-xs-12">
-            <input type="text" id="mobileNumber" class="form-control" placeholder="Mobile Number"
-              formControlName="phoneNumber">
+            <input type="text" id="fullName" class="form-control" placeholder="Type FullName"
+              formControlName="fullName" [ngbTypeahead]="search" [inputFormatter]="formatter">
           </div>
-          <div class="col-md-3 col-sm-3 col-xs-12">
+          <div class="col-md-2 col-sm-2 col-xs-12">
 
             <ng-select [items]="donationTypes" bindLabel="donationType" placeholder="Select Donation Type"
               formControlName="donationType">
             </ng-select>
           </div>
-          <div class="col-md-2 col-sm-3 col-xs-12">
+          <div class="col-md-2 col-sm-2 col-xs-12">
             <div class="input-group">
               <input class="form-control" placeholder="dd-mm-yyyy" name="dp" ngbDatepicker #d2="ngbDatepicker"
                 formControlName="fromDate">
@@ -30,7 +30,7 @@
               </div>
             </div>
           </div>
-          <div class="col-md-2 col-sm-3 col-xs-12">
+          <div class="col-md-2 col-sm-2 col-xs-12">
             <div class="input-group">
               <input class="form-control" placeholder="dd-mm-yyyy" name="dp2" ngbDatepicker #d3="ngbDatepicker"
                 formControlName="toDate">
@@ -41,8 +41,11 @@
               </div>
             </div>
           </div>
-          <div class="col-md-2 col-sm-3 col-xs-12">
-            <button type="submit" class="btn btn-raised btn-primary" [disabled]="rows.length > 0 ? false : true">
+          <div class="col-md-3 col-sm-3 col-xs-12">
+            <button title="Clear Search" type="button" (click)="filterReset()" class="btn btn-raised btn-primary ml-2">
+              <i class="fa fa-times"></i>
+            </button>
+            <button type="submit" class="btn btn-raised btn-primary ml-2" [disabled]="rows.length > 0 ? false : true">
               <i class="fa fa-search"></i>
             </button>
             <button (click)="generatePdf('print')" class="btn btn-raised btn-primary ml-2">
