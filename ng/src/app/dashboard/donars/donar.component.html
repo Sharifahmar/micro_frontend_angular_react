@@ -57,6 +57,33 @@
                 </div>
                 <div class="row">
                   <div class="form-group col-md-6 mb-2">
+                    <label class="sr-only" for="userinput1">Donation Amount</label>
+                    <input type="text" id="userinput1" class="form-control border-primary" placeholder="Donation Amount"
+                      formControlName="donationAmount" required>
+                    <small class="form-text text-muted danger"
+                      *ngIf="!donarForm.get('donationAmount').valid && (donarForm.get('donationAmount').dirty || donarForm.get('donationAmount').touched)">
+                      <div *ngIf="donarForm.get('donationAmount').errors?.required">
+                        Please enter Donation Amount.
+                      </div>
+                      <div *ngIf="donarForm.get('donationAmount').errors?.pattern">
+                        Please enter a valid Donation Amount.
+                      </div>        
+                    </small>
+                  </div>
+                  <div class="form-group col-md-6 mb-2">
+                    <select id="projectinput3" class="form-control border-primary" formControlName="donationTypeId"
+                      required>
+                    <option [ngValue]="null" disabled>Donation Type</option>
+                      <option *ngFor="let value of donationTypes;" [ngValue]="value.donationTypeId">
+                        {{value.donationType}}</option>
+                    </select>
+                    <small class="form-text text-muted danger"
+                      *ngIf="!donarForm.get('donationTypeId').valid && (donarForm.get('donationTypeId').dirty || donarForm.get('donationTypeId').touched)">Please
+                      select Donation Type</small>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-md-6 mb-2">
                     <label class="sr-only" for="userinput1">City</label>
                     <select id="projectinput7" class="form-control border-primary" formControlName="city" required>
                       <option [ngValue]="null" disabled>City</option>

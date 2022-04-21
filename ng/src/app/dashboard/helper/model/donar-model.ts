@@ -8,6 +8,9 @@ export class DonarModel {
      private state?: string;
      private zipCode?: number;
      private status?: boolean;
+     private donationAmount?:string;
+     private donationTypeId?:string
+
 
 
      /**

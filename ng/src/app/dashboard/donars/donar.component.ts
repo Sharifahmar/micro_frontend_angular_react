@@ -7,6 +7,7 @@ import * as alertFunctions from '../../shared/data/sweet-alerts';
 import { checkPhoneNumberValidator } from '../helper/custom-validator/phoneNumber-async-validator-donar';
 import { DonarModel } from '../helper/model/donar-model';
 import { DonarService } from '../service/donar.service';
+import { DonationTypeService } from '../service/donationType.service';
 import { UserProfileService } from '../service/user-profile.service';
 import { LoaderComponentService } from '../shared/behavior-subject-service/loader-component-interaction.service';
 
@@ -17,7 +18,13 @@ import { LoaderComponentService } from '../shared/behavior-subject-service/loade
 })
 export class DonarComponent implements OnInit {
 
-  constructor(private donarService: DonarService, private router: Router, private userProfileService: UserProfileService, private route: ActivatedRoute, private modalService: NgbModal, private loaderComponentService: LoaderComponentService) { }
+  constructor(private donarService: DonarService, 
+    private router: Router, 
+    private userProfileService: UserProfileService, 
+    private route: ActivatedRoute, 
+    private modalService: NgbModal, 
+    private loaderComponentService: LoaderComponentService,
+    private donationTypeSvc: DonationTypeService) { }
   donarForm: FormGroup;
   cities = ['Amravati'];
   states = ['Maharashtra'];
@@ -37,10 +44,13 @@ export class DonarComponent implements OnInit {
   responseStatus: number;
   imgUpload: boolean = false;
   popupBtn: boolean = true;
+  donationTypes:string[] = [];
 
   ngOnInit() {
     this.donarForm = new FormGroup({
       'fullName': new FormControl(null, [Validators.required]),
+      'donationAmount': new FormControl(null, [Validators.required,Validators.pattern("[0-9]+(.[0-9][0-9]?)?")],),
+      'donationTypeId': new FormControl(null, [Validators.required]),
       // 'email': new FormControl("", [Validators.required, Validators.pattern("^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")], [checkEmailValidator(this.donarService)]),
       'phoneNumber': new FormControl(null, [Validators.required, Validators.pattern("^[0-9]{10}$")], [checkPhoneNumberValidator(this.donarService)]),
       'address': new FormControl(null, [Validators.required]),
@@ -52,6 +62,7 @@ export class DonarComponent implements OnInit {
     });
 
     this.loadDetails();
+    this.loadAllDonationType();
   }
 
   cancelDonar(): void {
@@ -181,6 +192,17 @@ export class DonarComponent implements OnInit {
     }, 1500);
   }
 
+  loadAllDonationType(): void {
+    this.donationTypeSvc.getAllDonartionType().subscribe(
+      (response) => {
+        this.donationTypes = response._embedded.donationTypeEntities;
+      },
+
+      (error) => {
+        alertFunctions.custometypeError("Oops.!!", "Something went wrong..");
+      }
+    );
+  }
   get phoneNumber() { return this.donarForm.get('phoneNumber'); }
 
 
