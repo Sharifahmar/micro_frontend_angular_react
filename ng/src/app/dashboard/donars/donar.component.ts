@@ -73,7 +73,8 @@ export class DonarComponent implements OnInit {
   registerDonar(): void {
     if (this.id !== undefined && this.id !== null) {
       this.donarModel.setDonarId(this.id)
-      var copy = Object.assign(this.donarModel, this.donarForm.value);
+      const copy = Object.assign(this.donarModel, this.donarForm.value);
+      copy.donationTypeEntity = "http://localhost:8081/donationTypeRepo/" + this.donarForm.get('donationTypeId').value;
       this.donarService.updateDonar(copy).subscribe(
         response => {
           response.status === true ? alertFunctions.customtypeSuccess("Congratulations.!!", "Donar Update Successfully..!!") : null
@@ -84,7 +85,11 @@ export class DonarComponent implements OnInit {
         });
     }
     else {
-      this.donarService.registerDonar(this.donarForm.value).subscribe(
+
+      const request = this.donarForm.value;
+      request.donationTypeEntity ="http://localhost:8081/donationTypeRepo/" + this.donarForm.get('donationTypeId').value;
+
+      this.donarService.registerDonar(request).subscribe(
         response => {
           alertFunctions.customtypeSuccess("Congratulations.!!", "Donar Register Successfully..!!")
           this.donarForm.reset();
@@ -125,10 +130,13 @@ export class DonarComponent implements OnInit {
       this.id = param['id'];
       if (this.id !== undefined && this.id !== null) {
         this.donarService.getDonarsByIdAndStatus(this.id).subscribe(data => {
-          this.userProfileRecieve = data;
-          this.profileUrl = this.userProfileRecieve.profilePictureUrl;
-          this.donarForm.patchValue(this.userProfileRecieve);
-          this.loaderComponentService.emitChange(false);
+          this.donarService.genericGetService(data._links.donationTypeEntity.href).subscribe(res=>{
+            this.userProfileRecieve = data;
+            this.profileUrl = this.userProfileRecieve.profilePictureUrl;
+            this.userProfileRecieve.donationTypeId = res.donationTypeId;
+            this.donarForm.patchValue(this.userProfileRecieve);
+            this.loaderComponentService.emitChange(false);
+          })
         });
       }
     });

@@ -70,5 +70,9 @@ export class DonarService {
     });
   }
 
+  genericGetService(url:string): Observable<any> {
+    return this.http.get<any>(url);
+  }
+
 
 }
