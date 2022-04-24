@@ -41,10 +41,16 @@
       <ngx-datatable #table class='bootstrap' [columns]="columns" [columnMode]="'force'" [headerHeight]="50"
         [footerHeight]="50" [rowHeight]="'auto'" [limit]="10" [rows]='rows' [sorts]="[{prop: 'fullName', dir: 'asc'}]">
         <ngx-datatable-footer>
-          <ng-template ngx-datatable-footer-template let-rowCount="rowCount">
+          <ng-template ngx-datatable-footer-template let-rowCount="rowCount" let-pageSize="pageSize"
+            let-selectedCount="selectedCount" let-curPage="curPage" let-offset="offset" let-isVisible="isVisible">
             <div class="col-md-4">
               Total : {{ rowCount }}
             </div>
+            <datatable-pager [pagerLeftArrowIcon]="'datatable-icon-left'" [pagerRightArrowIcon]="'datatable-icon-right'"
+              [pagerPreviousIcon]="'datatable-icon-prev'" [pagerNextIcon]="'datatable-icon-skip'" [page]="curPage"
+              [size]="pageSize" [count]="rowCount" [hidden]="!((rowCount / pageSize) > 1)"
+              (change)="table.onFooterPage($event)">
+            </datatable-pager>
           </ng-template>
         </ngx-datatable-footer>
       </ngx-datatable>

@@ -28,7 +28,6 @@ export class DTFilterComponent implements OnInit {
     fullNameArr = [];
     donar: DonarModel = new DonarModel();
     gridAddBtn: boolean = false;
-
     constructor(private donarService: DonarService, private router: Router, private loaderComponentService: LoaderComponentService, private pdfgenerateService: PdfgenerateService) { }
 
     ngOnInit() {
@@ -42,7 +41,7 @@ export class DTFilterComponent implements OnInit {
         this.columns = [
             { name: 'Full Name', prop: 'fullName', headerTemplate: this.hdrTpl },
             { name: 'Mobile Number', prop: 'phoneNumber', headerTemplate: this.hdrTpl },
-            { name: 'City', prop: 'city', headerTemplate: this.hdrTpl },
+            { name: 'Amount', prop: 'donationAmount', headerTemplate: this.hdrTpl },
             { name: 'Actions', cellTemplate: this.editTmpl, headerTemplate: this.hdrTpl }
         ];
 
@@ -113,7 +112,7 @@ export class DTFilterComponent implements OnInit {
             confirmButtonColor: '#0CC27E',
             cancelButtonColor: '#FF586B',
             confirmButtonText: 'Delete',
-            cancelButtonText: "cancel"
+            cancelButtonText: "Cancel"
         }).then((isConfirm) => {
             if (isConfirm.value === true) {
                 this.donar.setDonarId(data.donarId);
@@ -163,7 +162,7 @@ export class DTFilterComponent implements OnInit {
     getDonarListDetails(rows) {
         return {
             table: {
-                widths: ['*', '*', '*', '*'],
+                widths: ['*', '*', '*', '*', '*'],
                 body: [
                     [
                         {
@@ -172,6 +171,10 @@ export class DTFilterComponent implements OnInit {
                         },
                         {
                             text: 'MOBILE NUMBER',
+                            style: 'tableHeader'
+                        },
+                        {
+                            text: 'AMOUNT',
                             style: 'tableHeader'
                         },
                         {
@@ -187,6 +190,7 @@ export class DTFilterComponent implements OnInit {
                         return [
                             { text: ed.fullName, alignment: 'center', fontSize: 11 },
                             { text: ed.phoneNumber, alignment: 'center', fontSize: 11 },
+                            { text: ed.donationAmount, alignment: 'center', fontSize: 11 },
                             { text: ed.city, alignment: 'center', fontSize: 11 },
                             { text: ed.zipCode, alignment: 'center', fontSize: 11 }
                         ];
