@@ -1,6 +1,7 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ColumnMode, SelectionType } from '@swimlane/ngx-datatable';
 import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 import swal from 'sweetalert2';
@@ -28,6 +29,9 @@ export class DTFilterComponent implements OnInit {
     fullNameArr = [];
     donar: DonarModel = new DonarModel();
     gridAddBtn: boolean = false;
+    SelectionType = SelectionType;
+    selected = [];
+    ColumnMode = ColumnMode;
     constructor(private donarService: DonarService, private router: Router, private loaderComponentService: LoaderComponentService, private pdfgenerateService: PdfgenerateService) { }
 
     ngOnInit() {
@@ -41,8 +45,7 @@ export class DTFilterComponent implements OnInit {
         this.columns = [
             { name: 'Full Name', prop: 'fullName', headerTemplate: this.hdrTpl },
             { name: 'Mobile Number', prop: 'phoneNumber', headerTemplate: this.hdrTpl },
-            { name: 'Amount', prop: 'donationAmount', headerTemplate: this.hdrTpl },
-            { name: 'Actions', cellTemplate: this.editTmpl, headerTemplate: this.hdrTpl }
+            { name: 'Amount', prop: 'donationAmount', headerTemplate: this.hdrTpl }
         ];
 
         this.loadAllDonars();
