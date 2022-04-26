@@ -8,6 +8,8 @@ import swal from 'sweetalert2';
 import * as alertFunctions from '../../shared/data/sweet-alerts';
 import { DonarModel } from '../helper/model/donar-model';
 import { DonarService } from '../service/donar.service';
+import { DonationAmountService } from '../service/donation-amount.service';
+import { DonationTypeService } from '../service/donationType.service';
 import { PdfgenerateService } from '../service/pdfgenerate.service';
 import { LoaderComponentService } from '../shared/behavior-subject-service/loader-component-interaction.service';
 
@@ -32,7 +34,7 @@ export class DTFilterComponent implements OnInit {
     SelectionType = SelectionType;
     selected = [];
     ColumnMode = ColumnMode;
-    constructor(private donarService: DonarService, private router: Router, private loaderComponentService: LoaderComponentService, private pdfgenerateService: PdfgenerateService) { }
+    constructor(private donarService: DonarService, private donationAmountService: DonationAmountService, private donationTypeSvc: DonationTypeService, private router: Router, private loaderComponentService: LoaderComponentService, private pdfgenerateService: PdfgenerateService) { }
 
     ngOnInit() {
 
@@ -146,7 +148,7 @@ export class DTFilterComponent implements OnInit {
                     style: 'header'
                 },
 
-                this.getDonarListDetails(this.rows),
+                this.getDonarListDetails(this.selected),
 
             ],
             info: {
@@ -213,4 +215,24 @@ export class DTFilterComponent implements OnInit {
     callAddRoute(): void {
         this.router.navigate(['ng/AddDonor']);
     }
+
+    onSelect({ selected }) {
+      //  console.log('Select Event', selected, this.selected);
+        this.selected.splice(0, this.selected.length);
+        this.selected.push(...selected);
+      }
+
+      bulkRecordTransfer(): void {
+        this.donationAmountService.generateReceiptPdfApi(this.selected).subscribe(response => {
+            if (response.status === true) {
+                swal('Congratulations.!!', 'Receipt has been generated successfully!!');
+                this.loaderComponentService.emitChange(false);
+            }
+        },
+            (error: any) => {
+                swal('Oops.!!', 'Something went wrong..!!');
+                this.loaderComponentService.emitChange(false);
+            })
+    }
+    
 }
