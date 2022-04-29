@@ -16,6 +16,7 @@ export class DonationAmountService {
   private donationContributionDetailsDeleteByIdApi: string = 'http://localhost:8081/deleteDonarContributionDetails/'
   private donationContributionDetailsUpdateByIdApi: string = 'http://localhost:8081/updateDonarContributionDetails/'
   private monthlyDonationDetailsApi: string = 'http://localhost:8081/donarContributionDetailsReport'
+  private bulktransferDonationDetailsApi: string = 'http://localhost:8081/donar/donarBulkReceiptGenerate'
   constructor(private http: HttpClient) { }
 
   registerDonationAmount(payload: any): Observable<ApiResponseModel> {
@@ -42,8 +43,10 @@ export class DonationAmountService {
     return this.http.post<ApiResponseModel>(this.donationContributionDetailsUpdateByIdApi, payload);
   }
 
-  generateReceiptPdfApi(payload: any): Observable<ApiResponseModel> {
-    return this.http.post<ApiResponseModel>(this.monthlyDonationDetailsApi, payload);
+  bulkRecordTransfer(payload: any): Observable<ApiResponseModel> {
+    return this.http.post<ApiResponseModel>(this.bulktransferDonationDetailsApi, payload);
   }
+
+ 
 
 }

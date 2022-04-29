@@ -223,9 +223,10 @@ export class DTFilterComponent implements OnInit {
       }
 
       bulkRecordTransfer(): void {
-        this.donationAmountService.generateReceiptPdfApi(this.selected).subscribe(response => {
+        this.donationAmountService.bulkRecordTransfer(this.selected).subscribe(response => {
             if (response.status === true) {
-                swal('Congratulations.!!', 'Receipt has been generated successfully!!');
+                swal('Congratulations.!!', 'Bulk Donation has been generated successfully!!');
+                this.selected = [];
                 this.loaderComponentService.emitChange(false);
             }
         },
