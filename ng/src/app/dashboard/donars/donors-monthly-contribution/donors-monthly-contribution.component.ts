@@ -140,6 +140,7 @@ export class DonarsMonthlyContributionComponent implements OnInit {
         case "Edit":
           this.donarContributionForm.get("phoneNumber").disable();
           this.donarContributionForm.get("fullName").disable();
+          this.donarContributionForm.get("receiptNumber").disable();
           this.cancelButtonLabel = "Cancel";
           this.saveButtonLabel = "Update";
           this.viewForm = true;
@@ -158,6 +159,7 @@ export class DonarsMonthlyContributionComponent implements OnInit {
           .getDonarsContributionDetailsById(this.id)
           .subscribe((data) => {
             this.donarContributionForm.patchValue(data.data);
+            this.donarContributionForm.get("receiptNumber").setValue(data.data.donationAmountId);
           });
       }
     });
