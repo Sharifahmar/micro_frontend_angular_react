@@ -31,7 +31,7 @@
               <i class="fa fa-download"></i>
             </button>
             <button title="Print Records" type="button" (click)="generatePdf('print')" class="btn btn-raised btn-primary ml-2"
-              [disabled]="rows.length > 0 ? false : true">
+              [disabled]="selected.length > 0 ? false : true">
               <i class="fa fa-print"></i>
             </button>
             <!-- <button type="button" (click)="generatePdf('download')" class="btn btn-raised btn-primary ml-2"
@@ -59,11 +59,11 @@
       </ngx-datatable> -->
         <ngx-datatable class="bootstrap" [rows]="rows" [columnMode]="ColumnMode.force" [headerHeight]="50" [footerHeight]="50"
           rowHeight="auto" [limit]="10" [selected]="selected" [selectionType]="SelectionType.checkbox"
-          [selectAllRowsOnPage]="false" [displayCheck]="displayCheck" (select)="onSelect($event)">
+          [selectAllRowsOnPage]="false" [displayCheck]="displayCheck" (select)="onSelect($event)" [sorts]="[{prop: 'fullName', dir: 'asc'}]">
           <ngx-datatable-column [width]="30" [sortable]="false" [canAutoResize]="false" [draggable]="false" [resizeable]="false"
             [headerCheckboxable]="true" [checkboxable]="true">
           </ngx-datatable-column>
-          <ngx-datatable-column *ngFor="let column of columns; let i = index;" prop="{{column.prop}}">
+          <ngx-datatable-column *ngFor="let column of columns; let i = index;" prop="{{column.prop}}" name="{{column.name}}">
             <ng-template ngx-datatable-header-template let-column="column">
               <strong> {{ column.name }}</strong>
             </ng-template>

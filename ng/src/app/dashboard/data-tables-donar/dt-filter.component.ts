@@ -55,9 +55,11 @@ export class DTFilterComponent implements OnInit {
 
     filterReset(): void {
         this.donarFormSearchCriteria.reset();
+        this.selected = [];
     }
 
     doSearch(): void {
+        this.selected = [];
         this.loaderComponentService.emitChange(true);
         this.donarFormSearchCriteria.get('fullName').value === "" || this.donarFormSearchCriteria.get('fullName').value === null ? this.donar.setFullName(null) : this.donar.setFullName(this.donarFormSearchCriteria.get('fullName').value);
         this.donarFormSearchCriteria.get('phoneNumber').value === "" || this.donarFormSearchCriteria.get('phoneNumber').value === null ? this.donar.setPhoneNumber(null) : this.donar.setPhoneNumber(this.donarFormSearchCriteria.get('phoneNumber').value);
@@ -70,7 +72,7 @@ export class DTFilterComponent implements OnInit {
             error => {
                 alertFunctions.custometypeError("Oops.!!", "Something went wrong..")
             });
-
+    
     }
     loadAllDonars(): void {
         this.loaderComponentService.emitChange(true);

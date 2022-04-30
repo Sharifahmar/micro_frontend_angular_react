@@ -10,6 +10,7 @@ import { DonationAmountService } from '../../service/donation-amount.service';
 import { DonationTypeService } from '../../service/donationType.service';
 import { PdfgenerateService } from '../../service/pdfgenerate.service';
 import { LoaderComponentService } from '../../shared/behavior-subject-service/loader-component-interaction.service';
+import { ColumnMode, SelectionType } from '@swimlane/ngx-datatable';
 
 @Component({
     selector: 'app-data-tables-donarmonthlycontribution',
@@ -27,7 +28,9 @@ export class DataTablesDonarsMonthlyContributionComponent implements OnInit {
     donationTypes = [];
     amtCount: number;
     fullNameArr = [];
-
+    SelectionType = SelectionType;
+    selected = [];
+    ColumnMode = ColumnMode;
     constructor(private pdfgenerateService: PdfgenerateService, private router: Router, private loaderComponentService: LoaderComponentService, private donationAmountService: DonationAmountService, private donationTypeSvc: DonationTypeService) { }
 
     ngOnInit() {
@@ -42,12 +45,11 @@ export class DataTablesDonarsMonthlyContributionComponent implements OnInit {
 
         // Table Column Titles
         this.columns = [
-            { name: 'Receipt Number', prop: 'receiptNumber', headerTemplate: this.hdrTpl },
+            { name: 'Receipt Number', prop: 'donationAmountId', headerTemplate: this.hdrTpl },
             { name: 'Full Name', prop: 'fullName', headerTemplate: this.hdrTpl },
             { name: 'Donation Type', prop: 'donationType', headerTemplate: this.hdrTpl },
             { name: 'Amount', prop: 'donationAmount', headerTemplate: this.hdrTpl },
-            { name: 'Date', prop: 'dateString', headerTemplate: this.hdrTpl },
-            { name: 'Actions', cellTemplate: this.editTmpl, headerTemplate: this.hdrTpl }
+            { name: 'Date', prop: 'dateString', headerTemplate: this.hdrTpl }
         ];
 
         this.loadAllDonarsContributionList();
@@ -57,6 +59,7 @@ export class DataTablesDonarsMonthlyContributionComponent implements OnInit {
 
 
     doSearch(): void {
+        this.selected = [];
         let donationTypeObj = null;
         let fromDate = null;
         let toDate = null;
@@ -166,7 +169,7 @@ export class DataTablesDonarsMonthlyContributionComponent implements OnInit {
                     style: 'header'
                 },
 
-                this.getDonarContributionDetails(this.rows),
+                this.getDonarContributionDetails(this.selected),
 
             ],
             info: {
@@ -230,19 +233,26 @@ export class DataTablesDonarsMonthlyContributionComponent implements OnInit {
     }
 
     generateReceiptPdf(): void {
-        this.donationAmountService.generateReceiptPdfApi({ status: true }).subscribe(response => {
-            if (response.status === true) {
-                swal('Congratulations.!!', 'Receipt has been generated successfully!!');
-                this.loaderComponentService.emitChange(false);
-            }
-        },
-            (error: any) => {
-                swal('Oops.!!', 'Something went wrong..!!');
-                this.loaderComponentService.emitChange(false);
-            })
+        // this.donationAmountService.generateReceiptPdfApi({ status: true }).subscribe(response => {
+        //     if (response.status === true) {
+        //         swal('Congratulations.!!', 'Receipt has been generated successfully!!');
+        //         this.loaderComponentService.emitChange(false);
+        //     }
+        // },
+        //     (error: any) => {
+        //         swal('Oops.!!', 'Something went wrong..!!');
+        //         this.loaderComponentService.emitChange(false);
+        //     })
     }
 
     filterReset(): void {
         this.donarFormSearchCriteria.reset();
+        this.selected = [];
     }
+
+    onSelect({ selected }) {
+        //  console.log('Select Event', selected, this.selected);
+          this.selected.splice(0, this.selected.length);
+          this.selected.push(...selected);
+        }
 }
